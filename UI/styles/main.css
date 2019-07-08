@@ -1,0 +1,239 @@
+:root{
+	--primary :#15153e;
+	--secondary : rgb(0, 141, 179);
+}
+@font-face {
+    font-family: 'Walsheim';
+    src: url('./fonts/GT-Walsheim-Bold.woff2');
+}
+body{
+	font-family: normal;
+	margin: 0;
+	padding-top: 45px;
+}
+
+/* Customization of the scroller  */
+::-webkit-scrollbar{
+    box-shadow: inset 0 0 7px rgba(0,0,0,.1);
+	width: 7px;
+}
+::-ms-scrollbar{
+    box-shadow: inset 0 0 7px rgba(0,0,0,.1);
+	width: 7px;
+}
+::-ms-scrollbar-thumb{
+	background-color:rgb(143, 143, 162);
+}
+::-webkit-scrollbar-thumb{
+    background-color:rgb(143, 143, 162);
+}
+/* Header Section */
+
+header{
+	background: var(--primary);
+	color: white;
+	padding: .8em 0 0 .8em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	min-height: 45px;
+	z-index: 1000;
+}
+header a{
+	color: white;
+}
+header a.branding{
+	font-family: Walsheim;
+	font-size: 1.3em;
+}
+nav ul, nav li{
+	list-style-type: none;
+	margin: 0;
+}
+nav ul a, a{
+	text-decoration: none;
+	font-family: sans-serif;
+}
+/* Nav Flexibility */
+nav.upper-nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+nav.main-nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+nav.upper-nav ul{
+	display: flex;
+	flex-direction: row;
+	margin-right: 1.2em !important;
+}
+nav.upper-nav ul li{
+	background:#2b2b56;
+}
+
+nav.upper-nav ul a{
+	padding: 0 .7em;
+	font-size: .9em;
+}
+nav.main-nav li a{
+	padding: 0 3em;
+}
+li.active{
+	border-bottom: 3px solid var(--secondary);
+}
+/* Main section*/
+main{
+	width: 100%;
+	position: relative;
+	padding: 2em;
+	box-sizing: border-box;
+	min-height: 80vh;
+}
+div.landing{
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+div.landing-image{
+	text-align: center;
+    border-radius: 8px;
+}
+div.landing-image img{
+	width: 90%;
+	margin:0 auto;
+	max-height:450px;
+	-webkit-animation-name: animateBus;
+  	animation-name: animateBus;
+}
+div.landing-description{
+
+}
+div.description-title{
+	font-family: Walsheim;
+	font-size: 2.3em;
+	text-align: center;
+	margin-bottom: 1.5em;
+}
+div.description-contents{
+	font-size: 1.3em;
+	font-family: sans-serif;
+	font-weight: 200;
+	text-align: justify;
+}
+div.call-to-action{
+	padding-top: 2.5em;
+	text-align: center;
+}
+/* Buttons */
+.btn{
+	border:none;
+	padding: .5em 1em;
+	cursor: pointer;
+	border-radius: 4px;
+	font-family: sans-serif;
+}
+.btn-lg{
+	padding: .9em 3em;
+	font-size: 1.07em;
+}
+.btn-secondary{
+	background: var(--secondary);
+	color: white;
+}
+/* Footer Section*/
+footer{
+    font-family: sans-serif;
+    font-size: .9em;
+    color: white;
+    padding: .8em;
+    background : rgb(63, 70, 69);
+    position: relative;
+
+
+}
+footer .ft-sections{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 1.5em;
+    box-sizing: border-box;
+    margin-bottom: .5em;
+}
+.ft-sections div{
+    font-size: .9em;
+}
+.ft-sections li{
+    list-style: none;
+    font-family: sans-serif;
+    font-size: .9em;
+    line-height: 1.5;
+}
+
+.ft-sections a{
+    color: var(--secondary);
+}
+.ft-sections h3{
+    color: rgb(118, 205, 206);
+}
+.ft-sections .col{
+    width: 33.33%;
+}
+.ft-description{
+    /*padding: .5em;*/
+}
+
+footer .copyright{
+    color: #eeeeee;
+    text-align: center;
+    border-top: 1px solid rgba(0,0,0,.1);
+    padding : .5em;
+
+}
+
+
+/* Animations */
+.animate {
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@keyframes animateBus {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(0deg);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: rotate(1deg);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: rotate(0deg);
+  }
+
+  90% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+/* by @Bihame Sikubwabo Vainqueur */
