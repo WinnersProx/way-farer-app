@@ -1,0 +1,48 @@
+/* Ui responsiveness */
+@media(max-width: 720px){
+	nav.upper-nav{
+		margin-bottom: .8em;
+	}
+	div.landing{
+		display: flex;
+		flex-direction: column-reverse;
+	}
+	div.description-title{
+		margin-bottom: .5em;
+	}
+}
+@media(max-width: 500px){
+	body{
+		padding-top: 70px;
+	}
+	.btn-lg {
+	    padding: .4em 1.5em;
+	    font-size: 1em;
+	}
+	nav.main-nav li a{
+		padding: 0 1em;
+	}
+	div.description-title{
+		text-align: justify;
+		font-size: 1.5em;
+	}
+	footer .ft-sections{
+	    flex-direction: column;
+	    text-align: center;
+	}
+	footer .ft-sections .col{
+	    width: 100%;
+	}
+
+}
+@media(max-width: 335px){
+	nav.upper-nav ul li{
+		background: transparent;
+	}
+}
+
+/*@media(max-width: 500px){
+	nav.main-nav li a{
+		padding: 0 1em;
+	}
+}*/
