@@ -23,7 +23,7 @@ const animateLinks = () => {
 
 const formToJson = formElements => [].reduce.call(formElements, (datas, element) => {
 		if(element.name && element.value)
-			datas[element.name] = element.value;
+			datas[element.name] = element.value.trim();
 		return datas;
 	}, 
 {});
@@ -70,28 +70,45 @@ const validateSignUp = (datas) => {
 	return { success : errors.length ? false : true, errors }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
 	// event listeners
-    $$('form.signup').addEventListener('submit', e => {
-		e.preventDefault();
-		let datas = formToJson(e.target.elements);
-		let validation = validateSignUp(datas);
+	if($$('form.signup')){
+		$$('form.signup').addEventListener('submit', e => {
+			e.preventDefault();
+			let datas = formToJson(e.target.elements);
+			let validation = validateSignUp(datas);
 
-		$$(`.input-error`, true).forEach((input, index) => input.innerText = '');
+			$$(`.input-error`, true).forEach((input, index) => input.innerText = '');
 
-		if(!validation.success){
-			// send errors back to the form
-			validation.errors.forEach((input, index) => {
-				$$(`.input-error[data-label="${input.label}"]`).innerText = input.error;
-			})
-		}
-		else{
-			// makes request to the api and redirect the user
-			history.pushState('Landing', {}, './');
-			location.reload();
-		}
-	})
+			if(!validation.success){
+				// send errors back to the form
+				validation.errors.forEach((input, index) => {
+					$$(`.input-error[data-label="${input.label}"]`).innerText = input.error;
+				})
+			}
+			else{
+				// makes request to the api and redirect the user
+				history.pushState('Landing', {}, './');
+				location.reload();
+			}
+		});
+	}
+	if($$('form.signin')){
+		$$('form.signin').addEventListener('submit', e => {
+			e.preventDefault();
+			let datas = formToJson(e.target.elements);
+			if(datas.email && datas.password){
+				$$('div.form-header').innerText = '';
+				history.pushState('Landing', {}, './');
+				location.reload();
+			}
+			else{
+				$$('div.form-header').classList.add('error');
+				$$('div.form-header').innerText = 'All fields are required';
+			}
+		});
+	}
+	
 });
 
 

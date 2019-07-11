@@ -17,6 +17,9 @@ form{
 	box-shadow : inset 0 0 2px #e4dbdb;
 	width: 350px;
 }
+form.signin{
+	margin: 60px auto !important;
+}
 form .input-group{
 	margin-bottom: .6em;
 }
@@ -36,6 +39,7 @@ form button[type="submit"]{
 	padding: 8px 10px;
 	box-sizing: border-box;
 	border:none;
+	border-color: #ece6e6;
 	outline: none;
 	border-bottom: .4px solid #ece6e6;
 	transition : all .4s ease-out;
@@ -47,4 +51,21 @@ form button[type="submit"]{
 .input-group input:focus{
 	background: transparent;
 	border-bottom: 2px solid rgb(54, 185, 220);
+}
+form .form-header{
+	text-align: center;
+	margin:.4em;
+	font-size: .9em;
+	color: green;
+}
+.form-header.error{
+	color: red;
+}
+form .form-footer{
+	margin-top:.4em;
+	font-size: .9em;
+	text-align: right;
+}
+.form-footer a{
+	font-size: .9em;	
 }
