@@ -27,6 +27,9 @@ body{
 ::-webkit-scrollbar-thumb{
     background-color:rgb(143, 143, 162);
 }
+.error{
+	color: red;
+}
 /* Header Section */
 
 header{
@@ -129,11 +132,17 @@ div.call-to-action{
 }
 /* Buttons */
 .btn{
+	color: white;
+	background: rgb(54, 185, 220);
 	border:none;
 	padding: .5em 1em;
 	cursor: pointer;
 	border-radius: 4px;
 	font-family: sans-serif;
+}
+.btn-block{
+	width: 100%;
+	padding: .8em 0 !important;
 }
 .btn-lg{
 	padding: .9em 3em;
@@ -143,6 +152,12 @@ div.call-to-action{
 	background: var(--secondary);
 	color: white;
 }
+
+/* Login section */
+
+/* End Login section */
+
+
 /* Footer Section*/
 footer{
     font-family: sans-serif;
@@ -191,6 +206,11 @@ footer .copyright{
     border-top: 1px solid rgba(0,0,0,.1);
     padding : .5em;
 
+}
+.fixed-bottom{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
 }
 
 
