@@ -33,6 +33,10 @@
 	footer .ft-sections .col{
 	    width: 100%;
 	}
+	form{
+		padding: 10px;
+		width: 100% !important;
+	}
 
 }
 @media(max-width: 335px){
