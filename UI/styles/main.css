@@ -1,6 +1,8 @@
 :root{
-	--primary :#15153e;
+	--primary   :#15153e;
 	--secondary : rgb(0, 141, 179);
+	--light     : #ffffff;
+	--dark      : #000000;
 }
 @font-face {
     font-family: 'Walsheim';
@@ -72,6 +74,11 @@ nav.upper-nav ul{
 	display: flex;
 	flex-direction: row;
 	margin-right: 1.2em !important;
+}
+nav.upper-nav ul.auth{
+	margin-top: .5em !important;
+	cursor: pointer;
+	margin-right:1.9em !important;
 }
 nav.upper-nav ul li{
 	background:#2b2b56;
@@ -153,9 +160,35 @@ div.call-to-action{
 	color: white;
 }
 
-/* Login section */
+/* Sidebar section */
+.sidebar{
+	position: absolute;
+	top: 58px;
+	left: 0;
+	background: rgb(59, 59, 74);
+	width: 30vh;
+	height: 100vh;
+	padding-top: 10px;
+	color: white;
+	z-index: 2000;
+}
+.sidebar ul.sidebar-menus{
+	margin: 0 !important;
 
-/* End Login section */
+}
+.sidebar ul li{
+	list-style-type: none;
+	color: var(--light);
+	margin: 0 !important;
+	padding: .8em 0;
+}
+.sidebar ul li a{
+	color: var(--light) !important;
+	font-size: .95em;
+	width: 100%;
+}
+
+/* End Sidebar section */
 
 
 /* Footer Section*/
@@ -213,7 +246,44 @@ footer .copyright{
 	width: 100%;
 }
 
+/*Scroller */
+.scroller{
+    position: fixed;
+    bottom: 1.8em;
+    right: 1.8em;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.scroller .toggler{
+    /*display: none;*/
+    height: 35px;
+    width: 35px;
+    box-shadow: 0 0 15px rgba(0,0,0,.5);
+    font-family: sans-serif;
+    font-size: 1.5em;
+    border-radius: 50%;
+    background: var(--secondary);
+    text-align: center;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease-in ;
+}
+.show{
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    visibility: visible !important;
+}
+.arrow-up{
+    font-size: xx-large;
+    content: url("../images/arrow-up.svg");
+    fill: #ffffff;
+}
 
+.bolder{
+    font-weight: bold;
+}
 /* Animations */
 .animate {
   -webkit-transform-origin: center bottom;

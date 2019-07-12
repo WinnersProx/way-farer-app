@@ -72,6 +72,9 @@ const validateSignUp = (datas) => {
 
 document.addEventListener('DOMContentLoaded', () => {
 	// event listeners
+	window.addEventListener('scroll', () => {
+		(window.pageYOffset * 2 > window.innerHeight)  ? $$('div.toggler').classList.add('show') : $$('div.toggler').classList.remove('show');
+	});
 	if($$('form.signup')){
 		$$('form.signup').addEventListener('submit', e => {
 			e.preventDefault();
@@ -108,7 +111,38 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 		});
 	}
+	if($$('div.toggler')){
+		$$('div.toggler').addEventListener('click', () => {
+		// Smooth scroll to the top
+		window.scroll({
+				top: 0,
+				left: 0,
+				behavior: 'smooth'
+			});
+		});
+	}
+	if($$('.dropdown-toggle')){
+		$$('.dropdown-toggle', true).forEach((current, index) => {
+			current.addEventListener('click', e => {
+			let target = e.target.parentNode.children[1];
+			if (!target.classList.contains('show')) 
+				target.classList.add('show');
+			else 
+				target.classList.remove('show');
+			});
 	
+		});
+
+	}
+	window.addEventListener('click', e => {
+	// ensures that whenever the user clicks outside the dropdown menu => this one get closed
+		if(!e.target.matches('.dropdown-toggle')){
+			$$('.dropdown-menu', true).forEach((current, index) => {
+				if (current.classList.contains('show'))
+					current.classList.remove('show')	
+			})
+		}
+	});
 });
 
 
