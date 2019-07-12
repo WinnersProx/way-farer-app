@@ -147,6 +147,13 @@ div.call-to-action{
 	border-radius: 4px;
 	font-family: sans-serif;
 }
+.btn.right{
+	float: right;
+	margin: .2em;
+}
+.btn-danger{
+	background: #f55e5e !important;
+}
 .btn-block{
 	width: 100%;
 	padding: .8em 0 !important;
@@ -162,7 +169,7 @@ div.call-to-action{
 
 /* Sidebar section */
 .sidebar{
-	position: absolute;
+	position: fixed;
 	top: 58px;
 	left: 0;
 	background: rgb(59, 59, 74);
