@@ -150,6 +150,9 @@ div.call-to-action{
 	border-radius: 4px;
 	font-family: sans-serif;
 }
+.btn-centered{
+	margin: 0 auto;
+}
 .btn.right{
 	float: right;
 	margin: .2em;
