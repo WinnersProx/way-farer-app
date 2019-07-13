@@ -1,0 +1,349 @@
+:root{
+	--primary   :#15153e;
+	--secondary : rgb(0, 141, 179);
+	--light     : #ffffff;
+	--dark      : #000000;
+}
+@font-face {
+    font-family: 'Walsheim';
+    src: url('./fonts/GT-Walsheim-Bold.woff2');
+}
+.success{
+	color: green;
+}
+body{
+	font-family: normal;
+	margin: 0;
+	padding-top: 45px;
+}
+
+/* Customization of the scroller  */
+::-webkit-scrollbar{
+    box-shadow: inset 0 0 7px rgba(0,0,0,.1);
+	width: 7px;
+}
+::-ms-scrollbar{
+    box-shadow: inset 0 0 7px rgba(0,0,0,.1);
+	width: 7px;
+}
+::-ms-scrollbar-thumb{
+	background-color:rgb(143, 143, 162);
+}
+::-webkit-scrollbar-thumb{
+    background-color:rgb(143, 143, 162);
+}
+.error{
+	color: red;
+}
+/* Header Section */
+
+header{
+	background: var(--primary);
+	color: white;
+	padding: .8em 0 0 .8em;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	min-height: 45px;
+	z-index: 1000;
+}
+header a{
+	color: white;
+}
+header a.branding{
+	font-family: Walsheim;
+	font-size: 1.3em;
+}
+nav ul, nav li{
+	list-style-type: none;
+	margin: 0;
+}
+nav ul a, a{
+	text-decoration: none;
+	font-family: sans-serif;
+}
+/* Nav Flexibility */
+nav.upper-nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+nav.main-nav{
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+nav.upper-nav ul{
+	display: flex;
+	flex-direction: row;
+	margin-right: 1.2em !important;
+}
+nav.upper-nav ul.auth{
+	margin-top: .5em !important;
+	cursor: pointer;
+	margin-right:1.9em !important;
+}
+nav.upper-nav ul li{
+	background:#2b2b56;
+}
+
+nav.upper-nav ul a{
+	padding: 0 .7em;
+	font-size: .9em;
+}
+nav.main-nav li a{
+	padding: 0 3em;
+}
+li.active{
+	border-bottom: 3px solid var(--secondary);
+}
+/* Main section*/
+main{
+	width: 100%;
+	position: relative;
+	padding: 2em;
+	box-sizing: border-box;
+	min-height: 80vh;
+}
+div.landing{
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+div.landing-image{
+	text-align: center;
+    border-radius: 8px;
+}
+div.landing-image img{
+	width: 90%;
+	margin:0 auto;
+	max-height:450px;
+	-webkit-animation-name: animateBus;
+  	animation-name: animateBus;
+}
+div.landing-description{
+
+}
+div.description-title{
+	font-family: Walsheim;
+	font-size: 2.3em;
+	text-align: center;
+	margin-bottom: 1.5em;
+}
+div.description-contents{
+	font-size: 1.3em;
+	font-family: sans-serif;
+	font-weight: 200;
+	text-align: justify;
+}
+div.call-to-action{
+	padding-top: 2.5em;
+	text-align: center;
+}
+/* Buttons */
+.btn{
+	color: white;
+	background: rgb(54, 185, 220);
+	border:none;
+	padding: .5em 1em;
+	cursor: pointer;
+	border-radius: 4px;
+	font-family: sans-serif;
+}
+.btn-centered{
+	margin: 0 auto;
+}
+.btn.right{
+	float: right;
+	margin: .2em;
+}
+.btn-danger{
+	background: #f55e5e !important;
+}
+.btn-block{
+	width: 100%;
+	padding: .8em 0 !important;
+}
+.btn-lg{
+	padding: .9em 3em;
+	font-size: 1.07em;
+}
+.btn-secondary{
+	background: var(--secondary);
+	color: white;
+}
+
+/* Sidebar section */
+.sidebar{
+	position: fixed;
+	top: 58px;
+	left: 0;
+	background: rgb(59, 59, 74);
+	width: 30vh;
+	height: 100vh;
+	padding-top: 10px;
+	color: white;
+	z-index: 2000;
+}
+.sidebar ul.sidebar-menus{
+	margin: 0 !important;
+
+}
+.sidebar ul li{
+	list-style-type: none;
+	color: var(--light);
+	margin: 0 !important;
+	padding: .8em 0;
+}
+.sidebar ul li a{
+	color: var(--light) !important;
+	font-size: .95em;
+	width: 100%;
+}
+
+/* End Sidebar section */
+
+
+/* Footer Section*/
+footer{
+    font-family: sans-serif;
+    font-size: .9em;
+    color: white;
+    padding: .8em;
+    background : rgb(63, 70, 69);
+    position: relative;
+
+
+}
+footer .ft-sections{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 1.5em;
+    box-sizing: border-box;
+    padding-bottom: .5em;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+.ft-sections div{
+    font-size: .9em;
+}
+.ft-sections li{
+    list-style: none;
+    font-family: sans-serif;
+    font-size: .9em;
+    line-height: 1.5;
+}
+
+.ft-sections a{
+    color: var(--secondary);
+}
+.ft-sections h3{
+    color: rgb(118, 205, 206);
+}
+.ft-sections .col{
+    width: 33.33%;
+}
+.ft-description{
+    /*padding: .5em;*/
+}
+
+footer .copyright{
+    color: #eeeeee;
+    text-align: center;
+    padding : .5em 0 0;
+
+}
+.fixed-bottom{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+
+/*Scroller */
+.scroller{
+    position: fixed;
+    bottom: 1.8em;
+    right: 1.8em;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.scroller .toggler{
+    /*display: none;*/
+    height: 35px;
+    width: 35px;
+    box-shadow: 0 0 15px rgba(0,0,0,.5);
+    font-family: sans-serif;
+    font-size: 1.5em;
+    border-radius: 50%;
+    background: var(--secondary);
+    text-align: center;
+    transform: scale(0);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .4s ease-in;
+}
+.show{
+    opacity: 1 !important;
+    transform: scale(1) !important;
+    visibility: visible !important;
+}
+.arrow-up{
+    font-size: xx-large;
+    content: url("../images/arrow-up.svg");
+    fill: #ffffff;
+}
+
+.bolder{
+    font-weight: bold;
+}
+
+/* Sidebar */
+.sidebar-toggle{
+	padding-top: .3em;
+	cursor: pointer;
+	display: none;
+}
+/* Animations */
+.animate {
+  -webkit-transform-origin: center bottom;
+  transform-origin: center bottom;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-duration: 5s;
+  animation-duration: 5s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+@keyframes animateBus {
+  from,
+  20%,
+  53%,
+  80%,
+  to {
+    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+    transform: rotate(0deg);
+  }
+
+  40%,
+  43% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: rotate(1deg);
+  }
+
+  70% {
+    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+    transform: rotate(0deg);
+  }
+
+  90% {
+    transform: rotate(1deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+/* by @Bihame Sikubwabo Vainqueur */
