@@ -34,6 +34,7 @@
 .card .card-body.flexible{
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
 	justify-content: space-between;
 }
 .card-body .card-picture{
@@ -47,4 +48,54 @@
 }
 .card .card-footer{
 	padding: .2em;
+}
+/* Modals */
+.modal {
+  position: fixed;
+  background: rgba(0,0,0,.2);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  transform: scale(0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all .2s ease-in-out;
+}
+
+.modal-dialog {
+  background: white;
+  border: 1px solid rgba(0,0,0,.1);
+  border-radius: .4em;
+  position: relative;
+  width: 600px;
+  margin: 10rem auto;
+}
+.modal-dialog .modal-header{
+	padding: .8em;
+	border-bottom: 1px solid rgba(0,0,0,.15);
+}
+.right{
+	float: right;
+}
+.modal-backdrop{
+	cursor: pointer;
+}
+.modal-body{
+	padding: .8em;
+}
+.modal-descriptions{
+	width: 100%;
+}
+.body-description{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding-bottom: .9em;
+}
+.modal-footer{
+	border-top: 1px solid rgba(0,0,0,.15);
+	padding: .8em;
 }

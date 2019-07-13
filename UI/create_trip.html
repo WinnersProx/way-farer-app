@@ -17,6 +17,7 @@
 <body>
 	<header>
 		<nav class="upper-nav">
+			<div class="sidebar-toggle"><i class="fa fa-align-justify fa-lg"></i></div>
 			<a href="./" class="branding">WayFarer</a>
 			<ul class="auth">
 				<i class="fa fa-user fa-lg dropdown-toggle"></i>
@@ -38,7 +39,7 @@
 				<a href="./bookings"><i class="fa fa-book"></i> Bookings</a>
 			</li>
 			<li>
-				<a href="./"><i class="fa fa-minus"></i> Logout</a>
+				<a href="./"><i class="fa fa-power-off"></i> Logout</a>
 			</li>
 		</ul>
 	</div>
@@ -69,7 +70,11 @@
 				<input type="number" name="fare" id="fare">
 				<span class="input-error" data-label="fare"></span>
 			</div>
-			
+			<div class="input-group">
+				<label for="departure_date">Departure Date</label>
+				<input type="date" name="departure_date" id="departure_date">
+				<span class="input-error" data-label="departure_date"></span>
+			</div>
 			<button type="submit" class="btn btn-block"><i class="fa fa-plus fa-lg"></i> Create a trip</button>
 		</form>
 	</main>

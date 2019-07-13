@@ -1,4 +1,4 @@
-/* Ui responsiveness */
+ /*Ui responsiveness */
 @media(max-width: 720px){
 	nav.upper-nav{
 		margin-bottom: .8em;
@@ -9,6 +9,24 @@
 	}
 	div.description-title{
 		margin-bottom: .5em;
+	}
+	.card{
+		width: 47% !important;
+	}
+	/*sidebar*/
+	.sidebar{
+		opacity: 0;
+	    visibility: hidden;
+		transition: all .3s ease-in;
+	}
+	.cards.admin-view{
+		margin-left: 0 !important;
+	}
+	.sidebar-toggle{
+		display: inline;
+	}
+	.modal-dialog{
+		width: 90% !important;
 	}
 }
 @media(max-width: 500px){
@@ -37,7 +55,10 @@
 		padding: 10px;
 		width: 100% !important;
 	}
-
+	/* cards */
+	.card{
+		width: 98% !important;
+	}
 }
 @media(max-width: 335px){
 	nav.upper-nav ul li{
@@ -49,4 +70,4 @@
 	nav.main-nav li a{
 		padding: 0 1em;
 	}
-}*/
+}

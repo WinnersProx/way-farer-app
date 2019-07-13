@@ -134,6 +134,38 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 
 	}
+	if($$('.sidebar-toggle')){
+		$$('.sidebar-toggle').addEventListener('click', e => {
+			let target = $$('.sidebar');
+			if (!$$('.sidebar').classList.contains('show')){
+				target.classList.add('show');
+				e.target.classList.remove('fa-align-justify')
+				e.target.classList.add('fa-times');
+			}
+			else{
+				target.classList.remove('show');
+				e.target.classList.add('fa-align-justify')
+				e.target.classList.remove('fa-times');
+			}
+		});
+	}
+	if($$('.modal-trigger')){
+		$$('.modal-trigger', true).forEach((trigger, index) => {
+			trigger.addEventListener('click', e => {
+				let targetModal = e.target.nextSibling.nextSibling;
+				if(!targetModal.classList.contains('show'))
+					targetModal.classList.add('show');
+			})
+		});
+	}
+	if($$('.modal-backdrop')){
+		$$('.modal-backdrop', true).forEach((modalbackDrop, index) => {
+			modalbackDrop.addEventListener('click', e => {
+				let targetModal = e.target.parentNode.parentNode.parentNode;
+				targetModal.classList.remove('show');
+			})
+		});
+	}
 	window.addEventListener('click', e => {
 	// ensures that whenever the user clicks outside the dropdown menu => this one get closed
 		if(!e.target.matches('.dropdown-toggle')){
