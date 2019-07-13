@@ -278,7 +278,7 @@ footer .copyright{
     transform: scale(0);
     opacity: 0;
     visibility: hidden;
-    transition: all .4s ease-in ;
+    transition: all .4s ease-in;
 }
 .show{
     opacity: 1 !important;

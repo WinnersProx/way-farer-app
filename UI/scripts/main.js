@@ -102,7 +102,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			let datas = formToJson(e.target.elements);
 			if(datas.email && datas.password){
 				$$('div.form-header').innerText = '';
-				history.pushState('Landing', {}, './');
+				let url = datas.email.match('admin') ? './admin_trips.html' : './trips.html';
+				history.pushState('User Landing', {}, url);
 				location.reload();
 			}
 			else{
