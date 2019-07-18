@@ -29,9 +29,40 @@ form .input-group{
 form button[type="submit"]{
 	font-weight: bold;
 }
+.custom-select{
+	background: #36b9dc;
+	border-radius: 4px;
+	height: 34px;
+	overflow: hidden;
+}
+form.filter-trips{
+	padding: 0;
+	margin-bottom: .5em;
+	display: flex;
+	box-shadow: none;
+	width: 50%;
+}
+form.filter-trips select{
+	width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 1em !important;
+    height: 35px;
+    color: white;
+    outline: none;
+}
+form.filter-trips .input-group{
+	flex-grow: 1;
+}
+select option{
+	padding: .5em 0;
+	color: black;
+	font-size: 1.1em;
+	border: 1px solid rgba(0,0,0,.1);
+}
 .input-group label{
 	display: block;
-	color: #36b9dc;
+	color: #70848a;
 	font-size: .92em;
 	margin-bottom: .2em;
 }
@@ -73,3 +104,4 @@ form .form-footer{
 .form-footer a{
 	font-size: .9em;	
 }
+
