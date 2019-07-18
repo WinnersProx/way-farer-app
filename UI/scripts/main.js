@@ -23,7 +23,7 @@ const animateLinks = () => {
 
 const formToJson = formElements => [].reduce.call(formElements, (datas, element) => {
 		if(element.name && element.value)
-			datas[element.name] = element.value;
+			datas[element.name] = element.value.trim();
 		return datas;
 	}, 
 {});
@@ -70,28 +70,119 @@ const validateSignUp = (datas) => {
 	return { success : errors.length ? false : true, errors }
 }
 
-
 document.addEventListener('DOMContentLoaded', () => {
 	// event listeners
-    $$('form.signup').addEventListener('submit', e => {
-		e.preventDefault();
-		let datas = formToJson(e.target.elements);
-		let validation = validateSignUp(datas);
+	window.addEventListener('scroll', () => {
+		(window.pageYOffset * 2 > window.innerHeight)  ? $$('div.toggler').classList.add('show') : $$('div.toggler').classList.remove('show');
+	});
+	if($$('form.signup')){
+		$$('form.signup').addEventListener('submit', e => {
+			e.preventDefault();
+			let datas = formToJson(e.target.elements);
+			let validation = validateSignUp(datas);
 
-		$$(`.input-error`, true).forEach((input, index) => input.innerText = '');
+			$$(`.input-error`, true).forEach((input, index) => input.innerText = '');
 
-		if(!validation.success){
-			// send errors back to the form
-			validation.errors.forEach((input, index) => {
-				$$(`.input-error[data-label="${input.label}"]`).innerText = input.error;
+			if(!validation.success){
+				// send errors back to the form
+				validation.errors.forEach((input, index) => {
+					$$(`.input-error[data-label="${input.label}"]`).innerText = input.error;
+				})
+			}
+			else{
+				// makes request to the api and redirect the user
+				history.pushState('Landing', {}, './');
+				location.reload();
+			}
+		});
+	}
+	if($$('form.signin')){
+		$$('form.signin').addEventListener('submit', e => {
+			e.preventDefault();
+			let datas = formToJson(e.target.elements);
+			if(datas.email && datas.password){
+				$$('div.form-header').innerText = '';
+				let url = datas.email.match('admin') ? './admin_trips.html' : './trips.html';
+				history.pushState('User Landing', {}, url);
+				location.reload();
+			}
+			else{
+				$$('div.form-header').classList.add('error');
+				$$('div.form-header').innerText = 'All fields are required';
+			}
+		});
+	}
+	if($$('div.toggler')){
+		$$('div.toggler').addEventListener('click', () => {
+		// Smooth scroll to the top
+		window.scroll({
+				top: 0,
+				left: 0,
+				behavior: 'smooth'
+			});
+		});
+	}
+	if($$('.dropdown-toggle')){
+		$$('.dropdown-toggle', true).forEach((current, index) => {
+			current.addEventListener('click', e => {
+			let target = e.target.parentNode.children[1];
+			if (!target.classList.contains('show')) 
+				target.classList.add('show');
+			else 
+				target.classList.remove('show');
+			});
+	
+		});
+
+	}
+	if($$('.sidebar-toggle')){
+		$$('.sidebar-toggle').addEventListener('click', e => {
+			let target = $$('.sidebar');
+			if (!$$('.sidebar').classList.contains('show')){
+				target.classList.add('show');
+				e.target.classList.remove('fa-align-justify')
+				e.target.classList.add('fa-times');
+			}
+			else{
+				target.classList.remove('show');
+				e.target.classList.add('fa-align-justify')
+				e.target.classList.remove('fa-times');
+			}
+		});
+	}
+	if($$('.modal-trigger')){
+		$$('.modal-trigger', true).forEach((trigger, index) => {
+			trigger.addEventListener('click', e => {
+				let targetModal = e.target.nextSibling.nextSibling;
+				if(!targetModal.classList.contains('show'))
+					targetModal.classList.add('show');
+			})
+		});
+	}
+	if($$('.modal-backdrop')){
+		$$('.modal-backdrop', true).forEach((modalbackDrop, index) => {
+			modalbackDrop.addEventListener('click', e => {
+				let targetModal = e.target.parentNode.parentNode.parentNode;
+				targetModal.classList.remove('show');
+			})
+		});
+	}
+	
+	window.addEventListener('click', e => {
+	// ensures that whenever the user clicks outside the dropdown menu => this one get closed
+	// either way for modals
+		if(!e.target.matches('.dropdown-toggle')){
+			$$('.dropdown-menu', true).forEach((current, index) => {
+				if (current.classList.contains('show'))
+					current.classList.remove('show')	
 			})
 		}
-		else{
-			// makes request to the api and redirect the user
-			history.pushState('Landing', {}, './');
-			location.reload();
+		if(e.target.matches('.modal')){
+			if(e.target.classList.contains('show'))
+				e.target.classList.remove('show');
 		}
-	})
+		
+	});
 });
 
 

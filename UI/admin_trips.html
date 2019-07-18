@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>WayFarer - The best place to perform booking services</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, shrink-to-fit=no, user-scalable=no, height=2000">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="title" content="WayFarer - The Best Place to perform booking services">
+	<link rel="apple-touch-icon" sizes="180x180" href="./images/way-farer.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="./images/way-farer.png">
+	<link rel="stylesheet" type="text/css" href="./styles/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="./styles/main.css">
+	<link rel="stylesheet" type="text/css" href="./styles/responsive.css">
+	<link rel="stylesheet" type="text/css" href="./styles/forms.css">
+	<link rel="stylesheet" type="text/css" href="./styles/dropdown.css">
+	<link rel="stylesheet" type="text/css" href="./styles/cards.css">
+</head>
+<body>
+	<div class="overlay"></div>
+	<header>
+		<nav class="upper-nav">
+			<div class="sidebar-toggle"><i class="fa fa-align-justify fa-lg"></i></div>
+			<a href="./admin_trips.html" class="branding">WayFarer</a>
+			<ul class="auth">
+				<i class="fa fa-user fa-lg dropdown-toggle"></i>
+				<div class="dropdown-menu">
+					<a href="./signin.html"><i class="fa fa-power-off"></i> Logout</a>
+				</div>
+			</ul>
+		</nav>
+	</header>
+	<div class="sidebar">
+		<ul class="side-menus">
+			<li>
+				<a href="./create_trip.html"><i class="fa fa-plus"></i> Create Trip</a>
+			</li>
+			<li>
+				<a href="./admin_trips.html"><i class="fa fa-car"></i> Trips</a>
+			</li>
+			<li>
+				<a href="./admin_bookings.html"><i class="fa fa-book"></i> Bookings</a>
+			</li>
+			<li>
+				<a href="./signin.html"><i class="fa fa-power-off"></i> Logout</a>
+			</li>
+		</ul>
+	</div>
+	<main>
+		<!-- Filter -->
+		<form class="filter-trips">
+			<div class="custom-select">
+				<select name="filter_type">
+					<option value="origin">Origin</option>
+					<option value="destination">Destination</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<input type="text" name="filter-text" placeholder="Filter based on origin or destination">
+			</div>
+		</form>
+		<!-- Filter -->
+		<div class="cards admin-view">
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-OOO1
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Nairobi
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 30/80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0001
+								<i class="fa fa-times modal-backdrop fa-lg right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Nairobi</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										30/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0001</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-0002
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Kampala
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 70/80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0002
+								<i class="fa fa-times modal-backdrop right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Kampala</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										70/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0002</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-0003
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Kenya
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0003
+								<i class="fa fa-times modal-backdrop right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Kampala</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										70/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0003</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-0004
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Kenya
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0004
+								<i class="fa fa-times modal-backdrop fa-lg right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Nairobi</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										30/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0004</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-0005
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Kenya
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0005
+								<i class="fa fa-times modal-backdrop fa-lg right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Nairobi</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										30/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0005</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+			<div class="card bordered rounded">
+				<div class="card-header">
+					TR-0006
+				</div>
+				<div class="card-body flexible">
+		 			<div class="card-picture">
+		 				<i class="fa fa-car fa-3x"></i>
+		 			</div>
+		 			<div class="card-description">
+		 				<div>
+		 					<span class="card-description-title">Origin :</span> Kigali
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Destination :</span> Kenya
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Date : </span>11th July 2019
+		 				</div>
+		 				<div>
+		 					<span class="card-description-title">Seating Capacity : </span> 80
+		 				</div>
+		 				<div><span class="card-description-title">Fare :</span>30$</div>
+		 				
+		 			</div>
+				</div>
+				<div class="card-footer">
+					<button class="btn rounded modal-trigger">View</button>
+					<div class="modal">
+						<div class="modal-dialog">
+							<div class="modal-header bolder">
+								<i class="fa fa-car fa-lg"></i> Trip TR0006
+								<i class="fa fa-times modal-backdrop fa-lg right"></i>
+							</div>
+							<div class="modal-body">
+								<div class="body-description">
+									<div class="bolder">Origin : </div> 
+									<div>Kigali</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Destination : </div>
+									<div>Nairobi</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Seating Capacity : </div>
+									<div>
+										30/<span class="bolder success">80</span>
+									</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Fare : </div>
+									<div>30$</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Date : </div>
+									<div class="success">11th July 2019</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Bus Licence Number : </div>
+									<div class="bolder">TR0006</div>
+								</div>
+								<div class="body-description">
+									<div class="bolder">Status : </div>
+									<div class="success">Active</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button class="btn btn-danger rounded">Cancel</button>
+				</div>
+			</div>
+		</div>
+	</main>
+	<div class="scroller">
+        <div class="toggler arrow-up"></div>
+    </div>
+    <script type="text/javascript" src="./scripts/main.js"></script>
+</body>
+</html>

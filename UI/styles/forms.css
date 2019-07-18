@@ -17,15 +17,52 @@ form{
 	box-shadow : inset 0 0 2px #e4dbdb;
 	width: 350px;
 }
+form.signin{
+	margin: 60px auto !important;
+}
+form.create-trip{
+	margin-top: 40px;
+}
 form .input-group{
 	margin-bottom: .6em;
 }
 form button[type="submit"]{
 	font-weight: bold;
 }
+.custom-select{
+	background: #36b9dc;
+	border-radius: 4px;
+	height: 34px;
+	overflow: hidden;
+}
+form.filter-trips{
+	padding: 0;
+	margin-bottom: .5em;
+	display: flex;
+	box-shadow: none;
+	width: 50%;
+}
+form.filter-trips select{
+	width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0 1em !important;
+    height: 35px;
+    color: white;
+    outline: none;
+}
+form.filter-trips .input-group{
+	flex-grow: 1;
+}
+select option{
+	padding: .5em 0;
+	color: black;
+	font-size: 1.1em;
+	border: 1px solid rgba(0,0,0,.1);
+}
 .input-group label{
 	display: block;
-	color: #36b9dc;
+	color: #70848a;
 	font-size: .92em;
 	margin-bottom: .2em;
 }
@@ -36,6 +73,7 @@ form button[type="submit"]{
 	padding: 8px 10px;
 	box-sizing: border-box;
 	border:none;
+	border-color: #ece6e6;
 	outline: none;
 	border-bottom: .4px solid #ece6e6;
 	transition : all .4s ease-out;
@@ -48,3 +86,22 @@ form button[type="submit"]{
 	background: transparent;
 	border-bottom: 2px solid rgb(54, 185, 220);
 }
+form .form-header{
+	text-align: center;
+	margin:.4em;
+	font-size: .9em;
+	color: green;
+}
+.form-header.error{
+	color: red;
+}
+form .form-footer{
+	margin-top:.4em;
+	font-size: .9em;
+	text-align: right;
+}
+
+.form-footer a{
+	font-size: .9em;	
+}
+

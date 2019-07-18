@@ -1,0 +1,22 @@
+{
+  "name": "way-farer-app",
+  "version": "1.0.0",
+  "description": "Github pages",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d UI"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WinnersProx/way-farer-app.git"
+  },
+  "author": "Winner",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WinnersProx/way-farer-app/issues"
+  },
+  "homepage": "https://github.com/WinnersProx/way-farer-app#readme",
+  "dependencies": {
+    "gh-pages": "^2.0.1"
+  }
+}

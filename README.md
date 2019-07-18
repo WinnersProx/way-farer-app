@@ -33,7 +33,7 @@ Tools used for development of this project are;
 1. Clone the github repository [here](https://github.com/WinnersProx/way-farer-app). 
 2. Then once it's cloned you can run it in your browser
 if the stated commands are not succesful try to install all the development dependencies to fix it
-3. The deployed version is [here](https://winnersprox.github.io/WinnersProx/way-farer-app).
+3. The deployed version is [here](https://winnersprox.github.io/way-farer-app).
 
 ## Key Contributor
 
