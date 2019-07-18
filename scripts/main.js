@@ -167,14 +167,21 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		});
 	}
+	
 	window.addEventListener('click', e => {
 	// ensures that whenever the user clicks outside the dropdown menu => this one get closed
+	// either way for modals
 		if(!e.target.matches('.dropdown-toggle')){
 			$$('.dropdown-menu', true).forEach((current, index) => {
 				if (current.classList.contains('show'))
 					current.classList.remove('show')	
 			})
 		}
+		if(e.target.matches('.modal')){
+			if(e.target.classList.contains('show'))
+				e.target.classList.remove('show');
+		}
+		
 	});
 });
 

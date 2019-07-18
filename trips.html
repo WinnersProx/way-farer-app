@@ -33,6 +33,19 @@
 		</nav>
 	</header>
 	<main>
+		<!-- Filter -->
+		<form class="filter-trips">
+			<div class="custom-select">
+				<select name="filter_type">
+					<option value="origin">Origin</option>
+					<option value="destination">Destination</option>
+				</select>
+			</div>
+			<div class="input-group">
+				<input type="text" name="filter-text" placeholder="Filter based on origin or destination">
+			</div>
+		</form>
+		<!-- Filter -->
 		<div class="cards">
 			<div class="card bordered rounded">
 				<div class="card-header">
@@ -101,7 +114,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -109,7 +122,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
@@ -191,7 +204,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -199,7 +212,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
@@ -281,7 +294,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -289,7 +302,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
@@ -371,7 +384,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -379,7 +392,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
@@ -461,7 +474,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -469,7 +482,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
@@ -551,7 +564,7 @@
 							</div>
 						</div>
 					</div>
-					<button class="btn btn-primary right rounded modal-trigger">Book a seat</button>
+					<button class="btn btn-primary rounded modal-trigger">Book a seat</button>
 					<div class="modal">
 						<div class="modal-dialog">
 							<div class="modal-header bolder">
@@ -559,7 +572,7 @@
 								<i class="fa fa-times modal-backdrop fa-lg right"></i>
 							</div>
 							<div class="modal-body">
-								<form action="" method="POST">
+								<form action="" method="POST" class="expanded">
 									<div class="input-group">
 										<label for="seat_number">Seat Number</label>
 										<input type="number" name="seat_number" id="seat_number" required>
