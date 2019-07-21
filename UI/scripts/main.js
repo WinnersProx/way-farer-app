@@ -3,7 +3,6 @@
 let locationPortions = location.href.split('/');
 let currentPage = locationPortions[locationPortions.length - 1]
 .substr(0, locationPortions[locationPortions.length - 1].indexOf('.'));
-
 const $$ = (element, all = false) => {
 	return all 
 	? document.querySelectorAll(element) 
@@ -21,53 +20,34 @@ const animateLinks = () => {
 	});
 }
 
-const formToJson = formElements => [].reduce.call(formElements, (datas, element) => {
-		if(element.name && element.value)
-			datas[element.name] = element.value.trim();
-		return datas;
-	}, 
-{});
+const formToJson = formElements => {
+		let errors = [];
+		const formDatas = [].reduce.call(formElements, (datas, element) => {
+			if(element.name){
+				datas[element.name] = element.value.trim();
+				// console.log(element.value);
+				if(!element.value)
+					errors.push({label : element.name.replace('_', ' ')});
+			}
+			return datas;
+		},{});
+		return { formDatas, errors : errors.length ? errors : false };
+}
 
-const validateSignUp = (datas) => {
-	let errors = [];
-	const { email, first_name, last_name, address, password } = datas;
-	// email validation
-	if(!email || !email.trim()){
-		errors.push({label : 'email', error : 'The email field is required'});
-	}
-	if(!email.match('^([a-zA-Z0-9]+)(@)([a-z]{5,15})(\.)([a-z]{2,3})$'))
-		errors.push({label : 'email', error : 'The provided email is invalid'});
-	// password validation
-	if(!password || !password.trim()){
-		errors.push({label : 'password', error : 'The password field is required'});
-	}
-	else if(password.length < 6){
-		errors.push({label : 'password', error : 'The password should be at least 6 characters long'});
-	}
-	// first name validation
-	if(!first_name || !first_name.trim()){
-		errors.push({label : 'first_name', error : 'The first name field is required'});
-	}
-	else if(first_name.length < 6){
-		errors.push({label : 'first_name', error : 'The first name should be at least 6 characters long'});
-	}
-	// lastname validation
-	if(!last_name || !last_name.trim()){
-		errors.push({label : 'last_name', error : 'The last name field is required'});
-	}
-	else if(last_name.length < 6){
-		errors.push({label : 'last_name', error : 'The last name should be at least 6 characters long'});
-	}
-	
-	// address validation
-	if(!address || !address.trim()){
-		errors.push({label : 'address', error : 'The address field is required'});
-	}
-	else if(address.length < 6){
-		errors.push({label : 'address', error : 'The address must be at least 6 characters long'});
-	}
+const Toast = ({text, duration = 2000}, type = 'success') => {
+	let target = $$('.toaster');
+	target.textContent = text;
+	target.classList.remove('error', 'success');
+	if(type === 'success')
+		target.classList.add('success');
+	else
+		target.classList.add('error');
 
-	return { success : errors.length ? false : true, errors }
+	target.classList.add('show');
+	setTimeout(() =>  {
+		target.classList.remove('show');
+		target.classList.remove(type);
+	}, duration);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -79,36 +59,29 @@ document.addEventListener('DOMContentLoaded', () => {
 		$$('form.signup').addEventListener('submit', e => {
 			e.preventDefault();
 			let datas = formToJson(e.target.elements);
-			let validation = validateSignUp(datas);
-
-			$$(`.input-error`, true).forEach((input, index) => input.innerText = '');
-
-			if(!validation.success){
-				// send errors back to the form
-				validation.errors.forEach((input, index) => {
-					$$(`.input-error[data-label="${input.label}"]`).innerText = input.error;
-				})
-			}
-			else{
+			if(!datas.errors){
 				// makes request to the api and redirect the user
+				Toast({text : `Welcome "${datas.formDatas.first_name}", You succefuly registered`});
 				history.pushState('Landing', {}, './');
 				location.reload();
+			}
+			else{
+				Toast({text : `Sorry, "${datas.errors[0].label}" field is required`}, 'error');
 			}
 		});
 	}
 	if($$('form.signin')){
 		$$('form.signin').addEventListener('submit', e => {
 			e.preventDefault();
-			let datas = formToJson(e.target.elements);
+			let datas = formToJson(e.target.elements).formDatas;
 			if(datas.email && datas.password){
-				$$('div.form-header').innerText = '';
 				let url = datas.email.match('admin') ? './admin_trips.html' : './trips.html';
+				Toast({text : `You are logged in as "${datas.email}"`});
 				history.pushState('User Landing', {}, url);
 				location.reload();
 			}
 			else{
-				$$('div.form-header').classList.add('error');
-				$$('div.form-header').innerText = 'All fields are required';
+				Toast({text : `All fields are required`}, 'error');
 			}
 		});
 	}
@@ -167,7 +140,52 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		});
 	}
-	
+	if($$('form.create-trip')){
+		$$('form.create-trip').addEventListener('submit', e => {
+			e.preventDefault();
+			let datas = formToJson(e.target.elements);
+			const text = 'Yes, The trip is succefuly created!';
+			// this will make a http request to the api later
+			if(!datas.errors){
+				Toast({text});
+				history.pushState('Trips', {}, './admin_trips.html');
+				location.reload();
+			}
+			else{
+				Toast({text : `The "${datas.errors[0].label}" field is required`}, 'error');
+			}
+			
+		})
+	}
+	if($$('.cancel-trip')){
+		$$('.cancel-trip', true).forEach((cancelTripBtn, index) => {
+			cancelTripBtn.addEventListener('click', e => {
+				e.preventDefault();
+				const text = `The trip "TR-${e.target.getAttribute('data-trip')}" was succefuly canceled`;
+				e.target.parentNode.parentNode.classList.add('hide');
+				Toast({text});
+			})
+		})
+	}
+	if($$('.book-seat')){
+		$$('.book-seat', true).forEach((bookSeatBtn, index) => {
+			bookSeatBtn.addEventListener('click', e => {
+				let targetForm = e.target.parentNode.previousElementSibling.children[0];
+				let datas = formToJson(targetForm.elements).formDatas;
+				e.target.parentNode.parentNode.parentNode.classList.remove('show');
+				Toast({text : `You succefuly booked a seat on trip "TR-${e.target.getAttribute('data-trip')}"`});
+			});
+		})
+	}
+	if($$('.delete-booking')){
+		$$('.delete-booking', true).forEach((dropBookingBtn, index) => {
+			dropBookingBtn.addEventListener('click', e => {
+				const element = e.target.parentNode.parentNode;
+				$$('.cards').removeChild(element);
+				Toast({text : `You succefuly deleted the booking "BOOK-${e.target.getAttribute('data-book')}"`});
+			})
+		})
+	}
 	window.addEventListener('click', e => {
 	// ensures that whenever the user clicks outside the dropdown menu => this one get closed
 	// either way for modals
