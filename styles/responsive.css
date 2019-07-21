@@ -76,6 +76,20 @@
 	main{
 		padding: 1.5em .5em !important;
 	}
+	.toaster-control{
+		position: fixed;
+		top: 14%;
+		left: 0;
+		text-align: center;
+		z-index: 3000;
+	}
+	.toaster{
+		display: block;
+		padding: .5em .6em;
+		width: 90%;
+		box-sizing: border-box;
+		margin: 0 auto;
+	}
 }
 
 /*@media(max-width: 500px){
