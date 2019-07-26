@@ -16,10 +16,13 @@ const authController = {
             }
         })
     },
-    test : (req,res) => {
-        res.status(200)
+    signin : (req,res) => {
+        const { id, email, first_name, last_name } = req.user;
+        const token = userHelper.authenticateUser({id,email,first_name});
+        return res.status(200)
         .send({
-            user : req.user
+            status : 'success',
+            data : { email, first_name, last_name, token }
         })
     }
 
