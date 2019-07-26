@@ -1,5 +1,7 @@
 import passport from 'passport';
 import Joi from '@hapi/joi';
+import userHelper from '../helpers/user_helper';
+import User from '../models/user'
 const userSchema = Joi.object().keys({
     id : Joi.number().integer(),
     email : Joi.string().email({minDomainSegments : 2}).required(),
@@ -23,6 +25,33 @@ export default  {
         }
         next();
     },
+    validateSignin : (req, res, next) => {
+      const { email, password } = req.body;
+      if(!email || !password){
+        return res.status(400).send({
+          status : 'error',
+          error : 'All fields are required "(email and password)"'
+        })
+      }
+      else{
+        let user = User.findbyField('email', 'users', email);
+        if(!user){
+          return res.status(404).send({
+            status : 'error', error : 'user not found'
+          })
+        }
+        else{
+          if(!userHelper.comparePasswords(password, user.password)){
+            return res.status(400)
+            .send({
+              status : 'error', error : 'your password is invalid'
+            })
+          }
+          req.user = user;
+        }
+      }
+      next();
+    },
     checkUserToken: (req, res, next) => {
         passport.authenticate('jwt', (err, user, info) => {
           // user informations can be accessed on req object as req.user
@@ -32,12 +61,22 @@ export default  {
           }
           // check whether the token is in headers
           if (!user) {
-            return res.status(401).send({
+            return res.status(400).send({
               status : 'error',
               error: 'No provided token or invalid one provided'
             });
           }
-          return next();
+          next();
         })(req, res, next);
+    },
+    exists : (req, res, next) => {
+        const user = db.users.find(user => user.email === req.body.email);
+        if(user){
+          return res.status(400).send({
+            status : 'error',
+            error : 'Email already taken'
+          });
+        }
+        next();
     }
 }

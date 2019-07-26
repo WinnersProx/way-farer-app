@@ -1,5 +1,6 @@
 ## WAYFARER APP
 
+[![Build Status](https://travis-ci.org/WinnersProx/way-farer-app.svg?branch=develop)](https://travis-ci.org/WinnersProx/way-farer-app) [![Coverage Status](https://coveralls.io/repos/github/WinnersProx/way-farer-app/badge.svg)](https://coveralls.io/github/WinnersProx/way-farer-app?branch=ft-signin-api-167417682)
 
 ## Platform Description
 

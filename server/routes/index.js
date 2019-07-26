@@ -6,7 +6,7 @@ router.use('/api/v1/', router)
 router.use('/', authRouter)
 // some other routes 
 router.get('/', (req, res) => {
-    res.send({message : 'Welcome to WayFarer api feel home'})
+    res.status(200).send({message : 'Welcome to WayFarer api feel home'})
 })
 
 
