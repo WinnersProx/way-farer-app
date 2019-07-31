@@ -1,7 +1,8 @@
 import passport from 'passport';
 import Joi from '@hapi/joi';
 import userHelper from '../helpers/user_helper';
-import User from '../models/user'
+import User from '../models/user';
+
 const userSchema = Joi.object().keys({
     id : Joi.number().integer(),
     email : Joi.string().email({minDomainSegments : 2}).required(),
@@ -61,7 +62,7 @@ export default  {
           }
           // check whether the token is in headers
           if (!user) {
-            return res.status(400).send({
+            return res.status(401).send({
               status : 'error',
               error: 'No provided token or invalid one provided'
             });
@@ -75,6 +76,16 @@ export default  {
           return res.status(400).send({
             status : 'error',
             error : 'Email already taken'
+          });
+        }
+        next();
+    },
+    isAdmin : (req,res,next) => {
+        const { user } = req;
+        if(!user.is_admin){
+          return res.status(403).send({
+            status : 'error',
+            error : 'Only admins can perform this action'
           });
         }
         next();
