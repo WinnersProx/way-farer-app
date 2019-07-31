@@ -1,22 +1,16 @@
 import userHelper from '../helpers/user_helper';
 global.db = {
-    users : [{}],
-    trips : [{}],
-    bookings : [{}]
+    users : [],
+    trips : [],
+    bookings : []
 }
 
 class Model{
     constructor(){
     }
     create(datas, model){
-        datas.id = db[model].length;
-        datas.created_on = new Date();
-        // for hashing the password 
-        if(datas.password && model == 'users'){
-            datas.password = userHelper.hashPassword(datas.password);
-            datas.is_admin = false
-        }
-            
+        datas.id = (db[model].length + 1);
+        datas.created_on = new Date();   
         db[model] = [...db[model], datas];
         return db[model][db[model].length - 1]; // the index => id - 1
     }

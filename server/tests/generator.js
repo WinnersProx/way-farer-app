@@ -3,32 +3,33 @@ import User from '../models/user';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../..';
+import userHelper from '../helpers/user_helper';
 chai.use(chaiHttp);
 const generator = {
-    users : {
-        user1 : {
+    users : [
+        {
             email : "bihames4vainqueur@gmail.com",
             first_name:"Bihame",
             last_name:"Vainqueur",
-            password:'winnerstest',
-            address:"Goma"
+            password: userHelper.hashPassword('usertest'),
+            address:"Goma",
+            is_admin : false
         },
-        user2 : {
+        {
             email : "georgeTest@gmail.com",
             first_name:"George",
             last_name:"Test",
-            password:'georgestest',
-            address:"Goma"
+            password: userHelper.hashPassword('usertest'),
+            address:"Goma",
+            is_admin : false
         }
-    },
+    ],
     generateUsers : () => {
-        const user1 = chai.request(app)
-        .post('/api/v1/auth/signup')
-        .send(generator.users.user1);
-        const user2 = chai.request(app)
-        .post('/api/v1/auth/signup')
-        .send(generator.users.user2);
-        return { user1, user2 };
+        generator.users.forEach(user => {
+            //user.password = userHelper.hashPassword('usertest');
+            let newUser = User.create(user, 'users');
+            newUser = newUser.id === 1 ? User.setAsAdmin(newUser.id) : newUser;
+        });
     }
 }
 export default generator;

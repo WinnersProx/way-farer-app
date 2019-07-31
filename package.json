@@ -1,7 +1,7 @@
 {
   "name": "way-farer-app",
   "version": "1.0.0",
-  "description": "Github pages",
+  "description": "A Public bus transportation services",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index --exec babel-node",
@@ -30,6 +30,7 @@
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
     "@hapi/joi": "^15.1.0",
+    "@hapi/joi-date": "^1.3.0",
     "bcrypt": "^3.0.6",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",

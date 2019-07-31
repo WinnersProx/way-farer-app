@@ -9,12 +9,17 @@ let authToken;
 describe('Auth ', () => {
   before((done) => {
     // signup and get an access token
-    generator.generateUsers()
-    .user1.then(res => {
-      authToken = res.body.token;
-      done();
-    });
-    console.log(authToken);
+    generator.generateUsers();
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .set('Content-type', 'application/json')
+      .set('Content-type', 'application/x-www-form-urlencoded')
+      .send({email : 'bihames4vainqueur@gmail.com', password : 'usertest'})
+      .then(res => {
+        authToken = res.body.data.token;
+        done();
+      });
   });
   // Welcome to WayFarer api feel home
 
@@ -52,7 +57,14 @@ describe('Auth ', () => {
         .post('/api/v1/auth/signup')
         .set('Content-type', 'application/json')
         .set('Content-type', 'application/x-www-form-urlencoded')
-        .send(generator.users.user1)
+        .send({
+            email : "georgeTest@gmail.com",
+            first_name:"georgeTest",
+            last_name:"georgeTestLast",
+            password: 'usertesty',
+            address:"Goma Ville",
+            is_admin : false
+        })
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(400)
@@ -107,14 +119,13 @@ describe('Auth ', () => {
         })
     });
     it('should return an object with a data -> token when the user signs in with valid credentials', (done) => {
-      const user = User.create(generator.users.user1, 'users');
-      const { email } = user;
+      const { email } = db.users[0];
       chai
         .request(app)
         .post('/api/v1/auth/signin')
         .set('Content-type', 'application/json')
         .set('Content-type', 'application/x-www-form-urlencoded')
-        .send({email, password : 'winnerstest'})
+        .send({email, password : 'usertest'})
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(200)
@@ -124,8 +135,7 @@ describe('Auth ', () => {
         })
     });
     it('should return an error with 400 status when signing in with an invalid password', (done) => {
-      const user = User.create(generator.users.user1, 'users');
-      const { email } = user;
+      const { email } = generator.users[1];
       chai
         .request(app)
         .post('/api/v1/auth/signin')
