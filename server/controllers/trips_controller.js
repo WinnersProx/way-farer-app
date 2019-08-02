@@ -40,6 +40,13 @@ const tripsController = {
                 fare
             }
         });
+    },
+    viewTrips : (req, res) => { 
+        const trips = Trips.findAll('trips');
+        return res.status(200).send({
+            status : "success",
+            data : trips
+        });
     }
 }
 export default tripsController

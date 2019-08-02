@@ -268,5 +268,35 @@ describe('Trips', () => {
           done();
         })
   });
+  it('should return an object with an error property and a 401 status while viewing trips if not authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/trips/`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer wrongtoken`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(401)
+          expect(res.body).to.have.property('error')
+          expect(res.body).to.be.an('object')
+          done();
+        })
+  });
+  it('should return an object with a data property and a 200 status while viewing trips being authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/trips`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.have.property('data')
+          expect(res.body.data).to.be.an('array')
+          done();
+        })
+  });
 
 })
