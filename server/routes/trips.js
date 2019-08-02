@@ -6,4 +6,5 @@ const routes = express.Router()
 // hence we'll be using customized middlewares to validate all the auth requests
 routes
 .post('/trips', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.validateTrip, tripsController.createTrip)
+.patch('/trips/:trip_id/cancel', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.isValidTrip, tripsController.cancelTrip)
 export default routes;

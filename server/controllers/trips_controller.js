@@ -16,6 +16,15 @@ const tripsController = {
                 fare
             }
         })
+    },
+    cancelTrip : (req, res) => {
+        const canceledTrip = Trips.cancel(parseInt(req.params.trip_id));
+        return res.status(201).send({
+            status : "success",
+            data   : {
+                message : "Trip cancelled successfully"
+            }
+        });
     }
   
 }
