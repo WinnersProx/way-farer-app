@@ -7,4 +7,5 @@ const routes = express.Router()
 routes
 .post('/trips', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.validateTrip, tripsController.createTrip)
 .patch('/trips/:trip_id/cancel', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.isValidTrip, tripsController.cancelTrip)
+.get('/trips/:trip_id', authValidations.checkUserToken, tripsValidations.isValidTrip, tripsController.viewTrip)
 export default routes;

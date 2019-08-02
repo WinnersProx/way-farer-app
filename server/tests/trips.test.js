@@ -205,5 +205,68 @@ describe('Trips', () => {
           done();
         })
   });
+  //
+  it('should return an object with an error property and a 401 status when the user is not authenticated while viewing a specific trip', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/trips/${1}`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer wrongtoken`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(401)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          done();
+        })
+  });
+  
+  it('should return an object with an error property and a 400 status when the trip is invalid while viewing a specific trip', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/trips/trip_id/`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(400)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          done();
+        })
+  });
+  it('should return an object with an error property and a 404 status when the trip is not found while viewing a specific trip', (done) => {
+      chai
+        .request(app)
+        .patch(`/api/v1/trips/${15548518}/cancel`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(404)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          done();
+        })
+  });
+  
+  it('should return an object with a data property and a 200 status while viewing a trip', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/trips/${1}`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.have.property('data')
+          expect(res.body.data).to.have.property('trip_id')
+          done();
+        })
+  });
 
 })

@@ -25,7 +25,21 @@ const tripsController = {
                 message : "Trip cancelled successfully"
             }
         });
+    },
+    viewTrip : (req, res) => {
+        const trip = Trips.findbyField('id', 'trips', parseInt(req.params.trip_id));
+        const { id, seating_capacity, origin, destination, trip_date, fare } = trip;
+        return res.status(200).send({
+            status : "success",
+            data : {
+                trip_id : id,
+                seating_capacity,
+                origin,
+                destination,
+                trip_date,
+                fare
+            }
+        });
     }
-  
 }
 export default tripsController
