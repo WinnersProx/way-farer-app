@@ -1,7 +1,7 @@
 import passport from 'passport';
 import Joi from '@hapi/joi';
 import userHelper from '../helpers/user_helper';
-import User from '../models/user';
+import Trips from '../models/trips';
 const tripsSchema = Joi.object().keys({
     id : Joi.number().integer(),
     seating_capacity : Joi.number().integer().min(1).required(),
@@ -24,6 +24,24 @@ export default  {
             });
         }
         next();
+    },
+    isValidTrip : (req, res, next) => {
+        const validate = Joi.number().integer().validate(req.params.trip_id);
+        if(!validate.error){
+            const trip = Trips.findbyField('id','trips', parseInt(req.params.trip_id));
+            if(!trip){
+                return res.status(404).send({
+                    status : "error",
+                    error : "Trip not found, (does not exist)"
+                })
+            }
+        }
+        else{
+            return res.status(400).send({
+                status : "error",
+                error : validate.error
+            })
+        }
+        next();
     }
-    
 }

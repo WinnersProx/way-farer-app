@@ -1,6 +1,6 @@
 ## WAYFARER APP
 
-[![Build Status](https://travis-ci.org/WinnersProx/way-farer-app.svg?branch=develop)](https://travis-ci.org/WinnersProx/way-farer-app) [![Coverage Status](https://coveralls.io/repos/github/WinnersProx/way-farer-app/badge.svg)](https://coveralls.io/github/WinnersProx/way-farer-app?branch=ft-create-trip-api-167417688) [![Maintainability](https://api.codeclimate.com/v1/badges/ac59e2bbb7a54a77685e/maintainability)](https://codeclimate.com/github/WinnersProx/way-farer-app/maintainability)
+[![Build Status](https://travis-ci.org/WinnersProx/way-farer-app.svg?branch=develop)](https://travis-ci.org/WinnersProx/way-farer-app) [![Coverage Status](https://coveralls.io/repos/github/WinnersProx/way-farer-app/badge.svg)](https://coveralls.io/github/WinnersProx/way-farer-app?branch=ft-cancel-trip-167417689) [![Maintainability](https://api.codeclimate.com/v1/badges/ac59e2bbb7a54a77685e/maintainability)](https://codeclimate.com/github/WinnersProx/way-farer-app/maintainability)
 
 ## Platform Description
 

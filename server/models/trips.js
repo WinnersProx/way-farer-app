@@ -4,5 +4,9 @@ class TripsModel extends Model{
     constructor(){
         super();
   	}
+  	cancel(tripId){
+  		const target = db.trips[tripId - 1].status = 'cancelled';
+  		return db.trips[tripId - 1];
+  	}
 }
 export default new TripsModel();
