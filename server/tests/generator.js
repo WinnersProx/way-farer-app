@@ -24,11 +24,48 @@ const generator = {
             is_admin : false
         }
     ],
+    trips : [
+        {
+            seating_capacity: 5,
+            origin: "Goma Ville",
+            destination: "Kampala",
+            trip_date: "08/25/2020",
+            fare: 35.000,
+            bus_licence_number : 'BL025525666',
+            status             : "active"
+        },
+        {
+            seating_capacity: 80,
+            origin: "Goma Ville",
+            destination: "Kampala",
+            trip_date: "08/25/2020",
+            fare: 35.000,
+            bus_licence_number : 'BL025525666',
+            status             : "cancelled"
+        }
+    ],
+    bookings : [
+        {
+            trip_id : 1,
+            user_id : 1,
+            seat_number : 1
+        }
+    ],
     generateUsers : () => {
         generator.users.forEach(user => {
             //user.password = userHelper.hashPassword('usertest');
             let newUser = User.create(user, 'users');
             newUser = newUser.id === 1 ? User.setAsAdmin(newUser.id) : newUser;
+        });
+    },
+    generateTrips : () => {
+        generator.trips.forEach(trip => {
+            const newTrip = User.create(trip, 'trips');
+        });
+    },
+    generateBookings : () => {
+        generator.bookings.forEach(booking => {
+            const newBooking = User.create(booking, 'bookings');
         });
     }
 }
