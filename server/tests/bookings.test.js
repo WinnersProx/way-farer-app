@@ -225,12 +225,11 @@ describe('Bookings', () => {
           done();
         })
   });
-  it('should return an object with a data and 200 status when when deleting a booking with valid creadentials', (done) => {
+  it('should return an object with a data and message property with a 200 status when the booking is deleted successfully', (done) => {
       chai
         .request(app)
         .delete(`/api/v1/bookings/${1}`)
         .set('Content-type', 'application/json')
-        .set('Content-type', 'application/x-www-form-urlencoded')
         .set('Authorization', `Bearer ${authToken}`)
         .send()
         .end((err, res) => {
@@ -238,8 +237,60 @@ describe('Bookings', () => {
           expect(res).to.have.status(200)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
-          expect(res.body.data.message).to.equal('Booking deleted successfully')
+          expect(res.body.data).to.have.property('message')
+          expect(res.body.status).to.equal('success')
           done();
         })
   });
+  it('should return an object with a data and 401 status when the user trying to view bookings is noft authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/bookings`)
+        .set('Content-type', 'application/json')
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(401)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an object with a data and 200 status when the user trying to view bookings is authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/bookings`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('data')
+          expect(res.body.data).to.be.an('array')
+          expect(res.body.status).to.equal('success')
+          done();
+        })
+  });
+  it('should return an object with a data with only user bookings and 200 status when the user trying to view bookings is not an admin', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/bookings`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${userToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('data')
+          expect(res.body.data).to.be.an('array')
+          expect(res.body.status).to.equal('success')
+          done();
+        })
+  });
+
+
 })

@@ -23,6 +23,13 @@ const bookingsController = {
             status : "success",
             data   : { message : "Booking deleted successfully"}
         })
+    },
+    viewBookings : (req, res) => {
+        const bookings = (req.user.is_admin) ? Bookings.findAll('bookings') : Bookings.findUserBookings(req.user.id);
+        return res.status(200).send({
+            status : "success",
+            data   :  bookings 
+        })
     }
 }
 export default bookingsController
