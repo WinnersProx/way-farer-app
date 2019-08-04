@@ -68,6 +68,10 @@
 	.card{
 		width: 98% !important;
 	}
+	/* services section */
+	section#services{
+		flex-wrap: wrap;
+	}
 }
 @media(max-width: 335px){
 	nav.upper-nav ul li{

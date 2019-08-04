@@ -1,6 +1,6 @@
 :root{
 	--primary   :#15153e;
-	--secondary : rgb(0, 141, 179);
+	--secondary : rgba(46, 48, 131, .8);
 	--light     : #ffffff;
 	--dark      : #000000;
 }
@@ -147,7 +147,6 @@ div.landing-image{
 div.landing-image img{
 	width: 90%;
 	margin:0 auto;
-	max-height:450px;
 	-webkit-animation-name: animateBus;
   	animation-name: animateBus;
 }
@@ -167,13 +166,13 @@ div.description-contents{
 	text-align: justify;
 }
 div.call-to-action{
-	padding-top: 2.5em;
+	padding: 2.5em;
 	text-align: center;
 }
 /* Buttons */
 .btn{
 	color: white;
-	background: rgb(54, 185, 220);
+	background: rgb(79, 77, 187);
 	border:none;
 	padding: .5em 1em;
 	cursor: pointer;
@@ -195,7 +194,7 @@ div.call-to-action{
 	padding: .8em 0 !important;
 }
 .btn-lg{
-	padding: .9em 3em;
+	padding: 0.6em 2.5em;
 	font-size: 1.07em;
 }
 .btn-secondary{
@@ -235,8 +234,36 @@ div.call-to-action{
 }
 
 /* End Sidebar section */
-
-
+/* Services Section */
+section#services{
+	width: 100%;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	text-align: center;
+	justify-content: space-between;
+	padding: 1.5em;
+	margin-top: -2em;
+}
+section#services .service{
+	font-size: 1.2em;
+	font-family: sans-serif;
+	font-weight: 200;
+	padding: .5em;
+}
+.service{
+	margin-bottom: .5em;
+}
+.service i{
+	width: 100px;
+    height: 100px;
+    color: #2d2f82;
+    line-height: 100px;
+    border-radius: 50%;
+    box-shadow: inset 1px 1px 7px rgba(45, 47, 130,.8);
+   	margin-bottom: .3em;
+}
+/* End services section*/
 /* Footer Section*/
 footer{
     font-family: sans-serif;
@@ -271,7 +298,7 @@ footer .ft-sections{
     color: var(--secondary);
 }
 .ft-sections h3{
-    color: rgb(118, 205, 206);
+    color: rgb(150, 152, 222);
 }
 .ft-sections .col{
     width: 33.33%;
