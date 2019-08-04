@@ -4,8 +4,8 @@
   "description": "A Public bus transportation services",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index --exec babel-node",
-    "start-heroku":"babel-node index.js",
+    "start": "babel-node index.js",
+    "start-dev":"nodemon index --exec babel-node",
     "test": "mocha --exit --require @babel/register ./server/tests/*",
     "build": "babel index.js --out-dir build",
     "dev-start": "babel-watch index.js",
