@@ -1,10 +1,10 @@
 .page-description{
 	text-align: center;
 	margin-bottom: 1em;
-	color: #36b9dc;
+	color: #4f4dbb !important;
 }
 .page-description a{
-	color: #36b9dc !important;
+	color: #4f4dbb !important;
 	font-family: Walsheim;
 	font-size: 1.3em;
 }
