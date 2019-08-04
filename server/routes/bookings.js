@@ -7,4 +7,5 @@ const routes = express.Router()
 routes
 .post('/bookings', authValidations.checkUserToken, bookingsValidations.validateBooking, bookingsValidations.isSeatAvailable,bookingsController.bookSeat)
 .delete('/bookings/:booking_id', authValidations.checkUserToken, bookingsValidations.validateDelete, bookingsController.deleteBooking)
+.get('/bookings/', authValidations.checkUserToken, bookingsController.viewBookings)
 export default routes;
