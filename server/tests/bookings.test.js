@@ -20,6 +20,16 @@ describe('Bookings', () => {
       .send({email : 'bihames4vainqueur@gmail.com', password : 'usertest'})
       .then(res => {
         authToken = res.body.data.token;
+        //done();
+      });
+    chai
+      .request(app)
+      .post('/api/v1/auth/signin')
+      .set('Content-type', 'application/json')
+      .set('Content-type', 'application/x-www-form-urlencoded')
+      .send({email : 'georgeTest@gmail.com', password : 'usertest'})
+      .then(res => {
+        userToken = res.body.data.token;
         done();
       });
   });
@@ -149,6 +159,86 @@ describe('Bookings', () => {
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
           expect(res.body.status).to.equal('success')
+          done();
+        })
+  });
+  it('should return an error with a 401 status when all the user trying to delete a booking is not authenticated', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/bookings/${1}`)
+        .set('Content-type', 'application/json')
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(401)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an error with a 400 status when the the booking id to be deleted has an invalid format', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/bookings/wrong`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(400)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an error with a 404 status when the the booking id to be deleted is not found', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/bookings/${5452}`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(404)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an error with a 403 status when the the user trying to delete a booking is neither the owner nor an admin', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/bookings/${1}`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${userToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(403)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an object with a data and 200 status when when deleting a booking with valid creadentials', (done) => {
+      chai
+        .request(app)
+        .delete(`/api/v1/bookings/${1}`)
+        .set('Content-type', 'application/json')
+        .set('Content-type', 'application/x-www-form-urlencoded')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.an('object')
+          expect(res.body).to.have.property('data')
+          expect(res.body.data.message).to.equal('Booking deleted successfully')
           done();
         })
   });

@@ -34,7 +34,6 @@ export default  {
     },
     isSeatAvailable : (req, res, next) => {
         let { trip_id, seat_number } = req.body;
-        const validate = bookingsSchema.validate(req.body);
         const targetTrip = Trips.findbyField('id','trips', parseInt(trip_id));
         seat_number = (seat_number) ? parseInt(seat_number) : db.bookings.length + 1;
         const checkAvailability = db.bookings.filter(booking => parseInt(booking.seat_number) === seat_number);
@@ -52,6 +51,34 @@ export default  {
                 error  : `The specified seat is already taken, try with ${db.bookings.length + 1}`
             });
         }
+        next();
+    },
+    validateDelete : (req, res, next) => {
+        // booking credentials should be defined correctly
+        const { booking_id } = req.params;
+        const validate = Joi.number().integer().validate(booking_id);
+        const booking  = Bookings.findbyField('id', 'bookings', parseInt(booking_id));
+        if(validate.error){
+            return res.status(400).send({
+                status : "error",
+                error  : validate.error
+            })
+        }
+        // booking should exist
+        if(!booking){
+            return res.status(404).send({
+                status : "error",
+                error  : "The target booking was not found"
+            });
+        }
+        // the user should be either owner or admin
+        if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.is_admin)){
+            return res.status(403).send({
+                status : 'error',
+                error  : 'You must be the owner of this booking to delete it'
+            })
+        }
+
         next();
     }
 

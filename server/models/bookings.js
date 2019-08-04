@@ -4,5 +4,8 @@ class BookingsModel extends Model{
     constructor(){
         super();
   	}
+  	delete(bookingId){
+  		db.bookings.splice((bookingId - 1),1);
+  	}
 }
 export default new BookingsModel();

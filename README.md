@@ -1,6 +1,6 @@
 ## WAYFARER APP
 
-[![Build Status](https://travis-ci.org/WinnersProx/way-farer-app.svg?branch=develop)](https://travis-ci.org/WinnersProx/way-farer-app) [![Coverage Status](https://coveralls.io/repos/github/WinnersProx/way-farer-app/badge.svg)](https://coveralls.io/github/WinnersProx/way-farer-app?branch=ft-book-seat-api-167417694) [![Maintainability](https://api.codeclimate.com/v1/badges/ac59e2bbb7a54a77685e/maintainability)](https://codeclimate.com/github/WinnersProx/way-farer-app/maintainability)
+[![Build Status](https://travis-ci.org/WinnersProx/way-farer-app.svg?branch=develop)](https://travis-ci.org/WinnersProx/way-farer-app) [![Coverage Status](https://coveralls.io/repos/github/WinnersProx/way-farer-app/badge.svg)](https://coveralls.io/github/WinnersProx/way-farer-app?branch=ft-delete-booking-api-167417718) [![Maintainability](https://api.codeclimate.com/v1/badges/ac59e2bbb7a54a77685e/maintainability)](https://codeclimate.com/github/WinnersProx/way-farer-app/maintainability)
 
 ## Platform Description
 
@@ -25,16 +25,23 @@
 
 ## Tools
 
-Tools used for development of this project are;
+Tools used for development of this API are;
+- Documentation : [Swagger](#)
+- Framework: [ExpressJS](http://expressjs.com/)
 - Code Editor/IDE: [VSCode](https://code.visualstudio.com)
-- Programming language: [JavaScript(ES6)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/), HTML and CSS
+- Programming language: [JavaScript(ES6)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/)
+- API Testing environment: [Postman](https://www.getpostman.com)
 
 ## Getting Started
 
 1. Clone the github repository [here](https://github.com/WinnersProx/way-farer-app). 
 2. Then once it's cloned you can run it in your browser
 if the stated commands are not succesful try to install all the development dependencies to fix it
-3. The deployed version is [here](https://winnersprox.github.io/way-farer-app).
+
+## Deployment
+
+- Github Pages : https://winnersprox.github.io/way-farer-app.
+- Heroku Deployment : https://way-farer-app-rest.herokuapp.com/api/v1.
 
 ## Key Contributor
 
