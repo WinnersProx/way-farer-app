@@ -16,6 +16,13 @@ const bookingsController = {
                 user_email         : req.user.email
             }
         })
+    },
+    deleteBooking : (req, res) => {
+        Bookings.delete(req.params.booking_id);
+        return res.status(200).send({
+            status : "success",
+            data   : { message : "Booking deleted successfully"}
+        })
     }
 }
 export default bookingsController
