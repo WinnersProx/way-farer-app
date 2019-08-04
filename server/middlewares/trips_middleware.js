@@ -5,8 +5,8 @@ import Trips from '../models/trips';
 const tripsSchema = Joi.object().keys({
     id : Joi.number().integer(),
     seating_capacity : Joi.number().integer().min(1).required(),
-    origin : Joi.string().min(6).max(20).required(),
-    destination  : Joi.string().min(6).max(20).required(),
+    origin : Joi.string().min(4).max(20).required(),
+    destination  : Joi.string().min(4).max(20).required(),
     trip_date : Joi.date().required(),
     fare : Joi.number().required(),
     bus_licence_number : Joi.string().min(6).max(20).required(),
@@ -41,6 +41,17 @@ export default  {
                 status : "error",
                 error : validate.error
             })
+        }
+        next();
+    },
+    validateFilter : (req, res, next) => {
+        // @params must be either origin or destination
+        const { origin, destination } = req.query;
+        if(!origin && !destination){
+            return res.status(400).send({
+                status : "error",
+                error  : "filter should be based on either origin or destination"
+            });
         }
         next();
     }
