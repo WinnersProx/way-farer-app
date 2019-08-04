@@ -47,6 +47,15 @@ const tripsController = {
             status : "success",
             data : trips
         });
+    },
+    filterTrips : (req, res) => {
+        const { origin, destination } = req.query;
+        const target = origin ? "origin" : "destination";
+        const trips = Trips.filterBy(target, (origin ? origin : destination));
+        return res.status(200).send({
+            status :"success",
+            data   : trips
+        })
     }
 }
 export default tripsController

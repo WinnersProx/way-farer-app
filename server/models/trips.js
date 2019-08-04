@@ -8,5 +8,9 @@ class TripsModel extends Model{
   		const target = db.trips[tripId - 1].status = 'cancelled';
   		return db.trips[tripId - 1];
   	}
+  	filterBy(target, targetValue){
+  		// filter based on either origin or destination
+  		return db.trips.filter(trip => trip[target] === targetValue);
+  	}
 }
 export default new TripsModel();

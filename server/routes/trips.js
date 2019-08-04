@@ -9,5 +9,5 @@ routes
 .patch('/trips/:trip_id/cancel', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.isValidTrip, tripsController.cancelTrip)
 .get('/trips/:trip_id', authValidations.checkUserToken, tripsValidations.isValidTrip, tripsController.viewTrip)
 .get('/trips/', authValidations.checkUserToken, tripsController.viewTrips)
-
+.get('/filter/trips', authValidations.checkUserToken, tripsValidations.validateFilter, tripsController.filterTrips)
 export default routes;

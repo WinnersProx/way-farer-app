@@ -39,7 +39,7 @@ describe('Trips', () => {
         .set('Content-type', 'application/x-www-form-urlencoded')
         .send({
             seating_capacity: 80,
-            origin: "Goma Ville",
+            origin: "Goma",
             destination: "Kampala",
             trip_date: "08/25/2020",
             fare: 35.000,
@@ -62,8 +62,8 @@ describe('Trips', () => {
         .set('Authorization', `Bearer ${userToken}`)
         .send({
             seating_capacity: 80,
-            origin: "Goma Ville",
-            destination: "Kampala",
+            origin: "Kampala",
+            destination: "Gisenyi",
             trip_date: "08/25/2020",
             fare: 35.000,
             bus_licence_number : 'BL025525666'
@@ -101,7 +101,7 @@ describe('Trips', () => {
         .set('Authorization', `Bearer ${authToken}`)
         .send({
             seating_capacity: 80,
-            origin: "Goma Ville",
+            origin: "Goma",
             destination: "Kampala",
             trip_date: "08/25/2020",
             fare: 35.000,
@@ -295,6 +295,52 @@ describe('Trips', () => {
           expect(res).to.have.status(200)
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
+          done();
+        })
+  });
+  it('should return an object with an error property with a 401 status when the user attempting to filter trips is not authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/filter/trips?origin=Goma`)
+        .set('Content-type', 'application/json')
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(401)
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+  it('should return an object with an error property with a 400 status when there is no destination or origin specified for filtering trips', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1/filter/trips`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(400)
+          expect(res.body).to.have.property('error')
+          expect(res.body.status).to.equal('error')
+          done();
+        })
+  });
+
+  it('should return an object with a data property and a 200 status while viewing trips being authenticated', (done) => {
+      chai
+        .request(app)
+        .get(`/api/v1//filter/trips?origin=Goma`)
+        .set('Content-type', 'application/json')
+        .set('Authorization', `Bearer ${authToken}`)
+        .send()
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.body).to.have.property('data')
+          expect(res.body.data).to.be.an('array')
+          expect(res.body.status).to.equal('success')
           done();
         })
   });
