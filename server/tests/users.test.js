@@ -150,5 +150,19 @@ describe('Auth ', () => {
           done();
         })
     });
+    it('should return an html page with 200 status when users access api documentation', (done) => {
+      const { email } = generator.users[1];
+      chai
+        .request(app)
+        .get('/api/v1/api-docs')
+        .set('Content-type', 'text/html')
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(200)
+          expect(res.headers['content-type']).to.equal('text/html; charset=utf-8')
+          done();
+        })
+    });
+
 
 })
