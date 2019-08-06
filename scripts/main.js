@@ -76,9 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	if($$('form.signin')){
 		$$('form.signin').addEventListener('submit', e => {
 			e.preventDefault();
-			let datas = formToJson(e.target.elements).formDatas;
+			const adminEmail = 'bihames4vainqueur@gmail.com';
+			const datas = formToJson(e.target.elements).formDatas;
 			if(datas.email && datas.password){
-				let url = datas.email.match('admin') ? './admin_trips.html' : './trips.html';
+				let url = datas.email === adminEmail ? './admin_trips.html' : './trips.html';
 				Toast({text : `You are logged in as "${datas.email}"`});
 				history.pushState('User Landing', {}, url);
 				location.reload();
