@@ -5,7 +5,7 @@ class UserModel extends Model{
         super();
     }
     setAsAdmin(userId){
-    	db.users[userId - 1].is_admin = true;
+    	db.users[userId - 1].isAdmin = true;
     	return this.findbyField('id','users',userId);
     }
 }

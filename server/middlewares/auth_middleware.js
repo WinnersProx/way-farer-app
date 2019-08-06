@@ -82,7 +82,7 @@ export default  {
     },
     isAdmin : (req,res,next) => {
         const { user } = req;
-        if(!user.is_admin){
+        if(!user.isAdmin){
           return res.status(403).send({
             status : 'error',
             error : 'Only admins can perform this action'

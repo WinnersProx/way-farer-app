@@ -63,7 +63,7 @@ describe('Auth ', () => {
             last_name:"georgeTestLast",
             password: 'usertesty',
             address:"Goma Ville",
-            is_admin : false
+            isAdmin : false
         })
         .end((err, res) => {
           if (err) done(err);

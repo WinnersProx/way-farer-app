@@ -72,7 +72,7 @@ export default  {
             });
         }
         // the user should be either owner or admin
-        if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.is_admin)){
+        if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.isAdmin)){
             return res.status(403).send({
                 status : 'error',
                 error  : 'You must be the owner of this booking to delete it'
