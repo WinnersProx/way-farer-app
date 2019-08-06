@@ -11,6 +11,10 @@
 .success{
 	color: green;
 }
+body, html{
+	width: 100%;
+	height: 100%;
+}
 body{
 	font-family: normal;
 	margin: 0;
@@ -72,7 +76,8 @@ header{
 	padding: .8em 0 0 .8em;
 	position: fixed;
 	top: 0;
-	width: 100%;
+	left: 0;
+	right: 0;
 	min-height: 45px;
 	z-index: 1000;
 }
@@ -129,16 +134,16 @@ li.active{
 }
 /* Main section*/
 main{
-	width: 100%;
 	position: relative;
 	padding: 2em;
-	box-sizing: border-box;
-	min-height: 80vh;
+}
+main.expanded-contents{
+	min-height: 70vh !important;
 }
 div.landing{
-	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
+	padding-top: 30px;
 }
 div.landing-image{
 	text-align: center;
@@ -150,9 +155,6 @@ div.landing-image img{
 	-webkit-animation-name: animateBus;
   	animation-name: animateBus;
 }
-div.landing-description{
-
-}
 div.description-title{
 	font-family: Walsheim;
 	font-size: 2.3em;
@@ -163,10 +165,10 @@ div.description-contents{
 	font-size: 1.3em;
 	font-family: sans-serif;
 	font-weight: 200;
-	text-align: justify;
+	text-align: center;
 }
 div.call-to-action{
-	padding: 2.5em;
+	padding-top: 3.5em;
 	text-align: center;
 }
 /* Buttons */
@@ -191,6 +193,7 @@ div.call-to-action{
 }
 .btn-block{
 	width: 100%;
+	box-sizing: border-box;
 	padding: .8em 0 !important;
 }
 .btn-lg{
@@ -278,9 +281,7 @@ footer{
 footer .ft-sections{
     display: flex;
     flex-direction: row;
-    width: 100%;
     padding: 0 1.5em;
-    box-sizing: border-box;
     padding-bottom: .5em;
     border-bottom: 1px solid rgba(0,0,0,.1);
 }
@@ -316,9 +317,9 @@ footer .copyright{
 .fixed-bottom{
 	position: fixed;
 	bottom: 0;
-	width: 100%;
+	right: 0;
+	left: 0;
 }
-
 /*Scroller */
 .scroller{
     position: fixed;

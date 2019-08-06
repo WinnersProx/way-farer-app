@@ -25,8 +25,7 @@ const formToJson = formElements => {
 		const formDatas = [].reduce.call(formElements, (datas, element) => {
 			if(element.name){
 				datas[element.name] = element.value.trim();
-				// console.log(element.value);
-				if(!element.value)
+				if(!element.value || element.value === "")
 					errors.push({label : element.name.replace('_', ' ')});
 			}
 			return datas;
@@ -60,6 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
 			e.preventDefault();
 			let datas = formToJson(e.target.elements);
 			if(!datas.errors){
+				if(datas.formDatas.password !== datas.formDatas.password_confirm){
+					Toast({text : `password and confirm password  should match`}, 'error');
+					return;
+				}
 				// makes request to the api and redirect the user
 				Toast({text : `Welcome "${datas.formDatas.first_name}", You succefuly registered`});
 				history.pushState('Landing', {}, './');
@@ -73,9 +76,10 @@ document.addEventListener('DOMContentLoaded', () => {
 	if($$('form.signin')){
 		$$('form.signin').addEventListener('submit', e => {
 			e.preventDefault();
-			let datas = formToJson(e.target.elements).formDatas;
+			const adminEmail = 'bihames4vainqueur@gmail.com';
+			const datas = formToJson(e.target.elements).formDatas;
 			if(datas.email && datas.password){
-				let url = datas.email.match('admin') ? './admin_trips.html' : './trips.html';
+				let url = datas.email === adminEmail ? './admin_trips.html' : './trips.html';
 				Toast({text : `You are logged in as "${datas.email}"`});
 				history.pushState('User Landing', {}, url);
 				location.reload();

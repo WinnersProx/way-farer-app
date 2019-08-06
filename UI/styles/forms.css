@@ -1,7 +1,10 @@
 .page-description{
 	text-align: center;
-	margin-bottom: 1em;
+	margin: 4em 0 1em;
 	color: #4f4dbb !important;
+}
+.page-description.signup-description{
+	margin: 1em 0;
 }
 .page-description a{
 	color: #4f4dbb !important;

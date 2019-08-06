@@ -15,28 +15,46 @@
 
 </head>
 <body>
+	<header>
+		<nav class="upper-nav">
+			<a href="./" class="branding">WayFarer</a>
+			<ul>
+				<li data-page="signin"><a href="./signin.html"><i class="fa fa-user-o"></i> Login</a></li>
+				<li data-page="signup"><a href="./signup.html"><i class="fa fa-user-plus"></i> Register</a></li>
+			</ul>
+		</nav>
+		<nav class="main-nav">
+			<li data-page="index"><a href="./trips.html"><i class="fa fa-home"></i> Home</a></li>
+			<li data-page="trips"><a href="./trips.html"><i class="fa fa-automobile"></i> Trips</a></li>
+		</nav>
+	</header>
 	<div class="toaster-control">
 		<span class="toaster"></span>
 	</div>
 	<main>
-		<div class="page-description">
+		<div class="page-description signup-description">
 			<a href="./"><i class="fa fa-user fa-lg"></i> WayFarer</a>
 		</div>
 		<form action="" method="POST" class="signup">
 			<div class="input-group">
 				<label for="first_name">First Name</label>
-				<input type="text" name="first_name" id="first_name" required>
+				<input type="text" name="first_name" id="first_name">
 				<span class="input-error" data-label="first_name"></span>
 			</div>
 			<div class="input-group">
 				<label for="last_name">Last Name</label>
-				<input type="text" name="last_name" id="last_name" required>
+				<input type="text" name="last_name" id="last_name">
 				<span class="input-error" data-label="last_name"></span>
 			</div>
 			<div class="input-group">
 				<label for="email">Email</label>
-				<input type="text" name="email" id="email" required>
+				<input type="text" name="email" id="email">
 				<span class="input-error" data-label="email"></span>
+			</div>
+			<div class="input-group">
+				<label for="address">Address</label>
+				<input type="text" name="address" id="address">
+				<span class="input-error" data-label="address"></span>
 			</div>
 			<div class="input-group">
 				<label for="password">Password</label>
@@ -44,9 +62,9 @@
 				<span class="input-error" data-label="password"></span>
 			</div>
 			<div class="input-group">
-				<label for="address">Address</label>
-				<input type="text" name="address" id="address" required>
-				<span class="input-error" data-label="address"></span>
+				<label for="password_confirm">Confirm Password</label>
+				<input type="password" name="password_confirm" id="password_confirm">
+				<span class="input-error" data-label="password_confirm"></span>
 			</div>
 			<button type="submit" class="btn btn-block">SIGN UP</button>
 			<div class="form-footer">
