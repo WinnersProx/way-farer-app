@@ -12,7 +12,6 @@
 }
 .cards .card{
 	position: relative;
-	width: 30%;
 	box-shadow: 0 0 5px rgba(0,0,0,.2);
 	margin-bottom: .9em;
 }
@@ -29,16 +28,17 @@
 }
 .card .card-body{
 	min-height: 50px;
-	padding: .4em;
+	padding: .2em 1.5em;
 }
-.card .card-body.flexible{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: space-between;
-}
+
 .card-body .card-picture{
+	text-align: center;
+}
+.card-body .card-picture img{
 	color: #1e1e4c;
+	text-align: center;
+	margin: 0 auto;
+	/*width: 120px;*/
 }
 .card-body .card-description{
 	font-size: 1em;
@@ -51,6 +51,9 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+.card-footer button.delete-booking{
+	margin: 0 auto;
 }
 /* Modals */
 .modal {

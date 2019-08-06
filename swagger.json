@@ -6,8 +6,8 @@
     "description": "This is a public transportation bus api",
     "contact": {}
   },
-  "host": "localhost:5000",
-  "basePath": "/api/v1/auth",
+  "host": "https://way-farer-app-rest.herokuapp.com",
+  "basePath": "/api/v1",
   "securityDefinitions": {},
   "schemes": [
     "http",
@@ -22,8 +22,8 @@
   "paths": {
     "/filter/trips": {
       "get": {
-        "description": "For the user to access the root of the application",
-        "summary": "view root",
+        "description": "For the user to filter trips based on either origin or destination",
+        "summary": "filter trips",
         "tags": [
           "Misc"
         ],
@@ -45,7 +45,7 @@
             "in": "query",
             "required": true,
             "type": "string",
-            "description": ""
+            "description": "the origin of a trip"
           },
           {
             "name": "Content-Type",
@@ -63,7 +63,7 @@
         }
       }
     },
-    "//localhost:8000/api/v1/auth/signup": {
+    "/auth/signup": {
       "post": {
         "description": "Makes a post request to signup or register a new user and authenticate the given user once the registration is successful",
         "summary": "sign up",
@@ -92,7 +92,7 @@
         }
       }
     },
-    "/signin": {
+    "/auth/signin": {
       "post": {
         "description": "Sign in the user already having a user account on our platform and returns a token",
         "summary": "sign in",
@@ -145,7 +145,7 @@
         }
       }
     },
-    "/": {
+    "/trips": {
       "post": {
         "description": "Create trips where users can book a seat of their choice",
         "summary": "create trip",
@@ -174,8 +174,8 @@
         }
       },
       "get": {
-        "description": "for viewing a specific trip with its details",
-        "summary": "view specific trip",
+        "description": "for viewing all available trips",
+        "summary": "view all trips",
         "tags": [
           "Misc"
         ],
@@ -201,7 +201,7 @@
         }
       }
     },
-    "/trips/3/cancel": {
+    "/trips/:trip-id/cancel": {
       "patch": {
         "description": "set the trip status to cancelled, once a mistake was made or for any other reason",
         "summary": "cancel trip",
@@ -230,10 +230,10 @@
         }
       }
     },
-    "/trips": {
+    "/trips/:trip-id": {
       "get": {
-        "description": "for viewing all available trips",
-        "summary": "view all trips",
+        "description": "for viewing a specific trip and get its details",
+        "summary": "view specific trip",
         "tags": [
           "Misc"
         ],
@@ -313,10 +313,37 @@
         }
       }
     },
-    "//localhost:3000/api/v1/bookings/1": {
+    "bookings/booking-id": {
       "delete": {
         "description": "for the user to delete any of his bookings that may be errored",
         "summary": "delete booking",
+        "tags": [
+          "Misc"
+        ],
+        "operationId": "Localhost3000ApiV1Bookings1Delete",
+        "deprecated": false,
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "Authorization",
+            "in": "header",
+            "required": false,
+            "default": "Bearer {token}",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        }
+      },
+      "get": {
+        "description": "for the user to view a specific booking",
+        "summary": "view booking",
         "tags": [
           "Misc"
         ],
