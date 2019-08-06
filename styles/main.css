@@ -137,6 +137,9 @@ main{
 	position: relative;
 	padding: 2em;
 }
+main.expanded-contents{
+	min-height: 70vh !important;
+}
 div.landing{
 	display: grid;
 	grid-template-columns: 1fr 1fr;
