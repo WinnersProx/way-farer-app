@@ -12,5 +12,15 @@ class TripsModel extends Model{
   		// filter based on either origin or destination
   		return db.trips.filter(trip => trip[target] === targetValue);
   	}
+    tripBookingsCount(tripId){
+      return db.bookings.filter(booking => parseInt(booking.trip_id) === tripId).length;
+    }
+    findAvailable(){
+      return db.trips.filter(trip => trip.status === 'active')
+      .map(trip =>{
+        trip.available_seats = parseInt(trip.seating_capacity) - this.tripBookingsCount(trip.id);
+        return trip;
+      });
+    }
 }
 export default new TripsModel();

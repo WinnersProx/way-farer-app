@@ -63,7 +63,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(400)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(400)
           done();
         })
   });
@@ -138,7 +138,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(400)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(400)
           done();
         })
   });
@@ -158,7 +158,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(201)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(201)
           done();
         })
   });
@@ -173,7 +173,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(401)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(401)
           done();
         })
   });
@@ -189,7 +189,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(400)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(400)
           done();
         })
   });
@@ -205,7 +205,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(404)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(404)
           done();
         })
   });
@@ -221,7 +221,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(403)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(403)
           done();
         })
   });
@@ -238,7 +238,7 @@ describe('Bookings', () => {
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.have.property('message')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(200)
           done();
         })
   });
@@ -253,7 +253,7 @@ describe('Bookings', () => {
           expect(res).to.have.status(401)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(401)
           done();
         })
   });
@@ -270,7 +270,7 @@ describe('Bookings', () => {
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(200)
           done();
         })
   });
@@ -287,7 +287,7 @@ describe('Bookings', () => {
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(200)
           done();
         })
   });

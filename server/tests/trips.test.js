@@ -274,7 +274,7 @@ describe('Trips', () => {
           if (err) done(err);
           expect(res).to.have.status(400)
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(400)
           done();
         })
   });
@@ -290,7 +290,7 @@ describe('Trips', () => {
           expect(res).to.have.status(200)
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(200)
           done();
         })
   });

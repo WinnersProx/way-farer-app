@@ -3,23 +3,15 @@ import apiRouter from './server/routes/';
 import authentication from './server/middlewares/authentication';
 import swaggerUi from 'swagger-ui-express';
 import docs from './swagger.json';
-// some middlewares
-const app = express()
+const app = express();
+const PORT = process.env.PORT || 3000;
+const docsUrl = 'https://way-farer-app-rest.herokuapp.com/api/v1/api-docs/';
+
 app.use(express.urlencoded({extended : false}));
 app.use(authentication.initialize());
 app.use(apiRouter);
 app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(docs));
-const PORT = process.env.PORT || 3000;
-const docsUrl = 'https://way-farer-app-rest.herokuapp.com/api/v1/api-docs/';
-// internal server error implementation to use when database will be integrated
-/*app.use((err, req, res, next) => {
-  res.status(err.status || 500);
-  res.json({
-    status : "error",
-    error  : err.message
-  });
-  next();
-});*/
+
 app.use('**', (req,res) => {
 	return res.status(404).send({
 		status : "error",

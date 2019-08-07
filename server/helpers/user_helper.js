@@ -14,14 +14,15 @@ const authenticateUser = ({id,email,first_name}) => {
     config.jwt.secretKey,
     { expiresIn : 3600}) // expires in an hour
 }
-const respond = (res, statusCode, statusText, payload) => {
+const respond = (res, statusCode, statusText, message, payload) => {
 	return statusText !== "error" 
 	? res.status(statusCode).send({
-		status : statusText,
+		status : statusCode,
+		message,
 		data : payload
 	})
 	: res.status(statusCode).send({
-		status : statusText,
+		status : statusCode,
 		error : payload
 	})
 }

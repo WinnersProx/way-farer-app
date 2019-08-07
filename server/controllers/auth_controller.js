@@ -13,7 +13,7 @@ const authController = {
         ? userHelper.authenticateUser({id,email,first_name, isAdmin}) 
         : userHelper.authenticateUser({id,email,first_name});
 
-        userHelper.respond(res, 201, "success", {token});
+        userHelper.respond(res, 201, "success", "account created successfully", {token});
     },
     signin : (req,res) => {
         const { id, email, first_name, last_name, isAdmin } = req.user;
@@ -21,7 +21,7 @@ const authController = {
         ? userHelper.authenticateUser({id,email,first_name, isAdmin})
         : userHelper.authenticateUser({id,email,first_name});
         
-        userHelper.respond(res, 200, "success", {token});
+        userHelper.respond(res, 200, "success", "signed in successfully", {token});
     }
 
     

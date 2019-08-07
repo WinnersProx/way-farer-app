@@ -18,7 +18,7 @@ export default  {
         const validate = tripsSchema.validate(req.body);
         const { error } = validate;
         if(error){
-            return userHelper.respond(res, 400, "error", error);
+            return userHelper.respond(res, 400, "error","", error);
         }
         next();
     },
@@ -27,11 +27,11 @@ export default  {
         if(!validate.error){
             const trip = Trips.findbyField('id','trips', parseInt(req.params.trip_id));
             if(!trip){
-                return userHelper.respond(res, 404, "error", "Trip not found, (does not exist)");
+                return userHelper.respond(res, 404, "error", "", "Trip not found, (does not exist)");
             }
         }
         else{
-            return userHelper.respond(res, 400, "error", validate.error);
+            return userHelper.respond(res, 400, "error", "", validate.error);
         }
         next();
     },
@@ -39,7 +39,7 @@ export default  {
         // @query must be either origin or destination
         const { origin, destination } = req.query;
         if(!origin && !destination){
-            return userHelper.respond(res, 400, "error", "filter should be based on either origin or destination");
+            return userHelper.respond(res, 400, "error", "", "filter should be based on either origin or destination");
         }
         next();
     }
