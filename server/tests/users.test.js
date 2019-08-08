@@ -5,6 +5,7 @@ import generator from './generator';
 import User from '../models/user';
 chai.use(chaiHttp)
 const expect = chai.expect;
+const docsUrl = 'https://way-farer-app-rest.herokuapp.com/api/v1/api-docs/';
 let authToken;
 describe('Auth ', () => {
   before((done) => {
@@ -58,18 +59,18 @@ describe('Auth ', () => {
         .set('Content-type', 'application/json')
         .set('Content-type', 'application/x-www-form-urlencoded')
         .send({
-            email : "georgeTest@gmail.com",
+            email : "bihames4vainqueur@gmail.com",
             first_name:"georgeTest",
             last_name:"georgeTestLast",
             password: 'usertesty',
-            address:"Goma Ville",
-            is_admin : false
+            address:"Goma Ville"
         })
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(400)
           expect(res.body).to.be.an('object')
           expect(res.body).to.have.property('error')
+          expect(res.body.error).to.equal('Email already taken')
           done();
         })
     });
@@ -163,6 +164,18 @@ describe('Auth ', () => {
           done();
         })
     });
-
-
+    //The requested resource was not found on the server
+    it('should return an error with 404 status when the user accesses a wrong endpoint', (done) => {
+      const { email } = generator.users[1];
+      chai
+        .request(app)
+        .get('/api/v1111/wrong')
+        .set('Content-type', 'application/json')
+        .end((err, res) => {
+          if (err) done(err);
+          expect(res).to.have.status(404);
+          expect(res.body.error).to.equal(`The requested resource was not found on the server, Kindly read documentation here : ${docsUrl}`);
+          done();
+        })
+    });
 })

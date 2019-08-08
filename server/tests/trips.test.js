@@ -190,7 +190,7 @@ describe('Trips', () => {
           done();
         })
   });
-  it('should return an object with a data property and a 201 status while cancelling a trip', (done) => {
+  it('should return an object with a data property and a 200 status while cancelling a trip', (done) => {
       chai
         .request(app)
         .patch(`/api/v1/trips/${1}/cancel`)
@@ -199,29 +199,12 @@ describe('Trips', () => {
         .send()
         .end((err, res) => {
           if (err) done(err);
-          expect(res).to.have.status(201)
+          expect(res).to.have.status(200)
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.have.property('message')
           done();
         })
   });
-  //
-  it('should return an object with an error property and a 401 status when the user is not authenticated while viewing a specific trip', (done) => {
-      chai
-        .request(app)
-        .get(`/api/v1/trips/${1}`)
-        .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer wrongtoken`)
-        .send()
-        .end((err, res) => {
-          if (err) done(err);
-          expect(res).to.have.status(401)
-          expect(res.body).to.be.an('object')
-          expect(res.body).to.have.property('error')
-          done();
-        })
-  });
-  
   it('should return an object with an error property and a 400 status when the trip is invalid while viewing a specific trip', (done) => {
       chai
         .request(app)
@@ -258,7 +241,6 @@ describe('Trips', () => {
         .request(app)
         .get(`/api/v1/trips/${1}`)
         .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer ${authToken}`)
         .send()
         .end((err, res) => {
           if (err) done(err);
@@ -268,47 +250,17 @@ describe('Trips', () => {
           done();
         })
   });
-  it('should return an object with an error property and a 401 status while viewing trips if not authenticated', (done) => {
-      chai
-        .request(app)
-        .get(`/api/v1/trips/`)
-        .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer wrongtoken`)
-        .send()
-        .end((err, res) => {
-          if (err) done(err);
-          expect(res).to.have.status(401)
-          expect(res.body).to.have.property('error')
-          expect(res.body).to.be.an('object')
-          done();
-        })
-  });
   it('should return an object with a data property and a 200 status while viewing trips being authenticated', (done) => {
       chai
         .request(app)
         .get(`/api/v1/trips`)
         .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer ${authToken}`)
         .send()
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(200)
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
-          done();
-        })
-  });
-  it('should return an object with an error property with a 401 status when the user attempting to filter trips is not authenticated', (done) => {
-      chai
-        .request(app)
-        .get(`/api/v1/filter/trips?origin=Goma`)
-        .set('Content-type', 'application/json')
-        .send()
-        .end((err, res) => {
-          if (err) done(err);
-          expect(res).to.have.status(401)
-          expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
           done();
         })
   });
@@ -317,13 +269,12 @@ describe('Trips', () => {
         .request(app)
         .get(`/api/v1/filter/trips`)
         .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer ${authToken}`)
         .send()
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(400)
           expect(res.body).to.have.property('error')
-          expect(res.body.status).to.equal('error')
+          expect(res.body.status).to.equal(400)
           done();
         })
   });
@@ -331,16 +282,15 @@ describe('Trips', () => {
   it('should return an object with a data property and a 200 status while viewing trips being authenticated', (done) => {
       chai
         .request(app)
-        .get(`/api/v1//filter/trips?origin=Goma`)
+        .get(`/api/v1/filter/trips?origin=Goma`)
         .set('Content-type', 'application/json')
-        .set('Authorization', `Bearer ${authToken}`)
         .send()
         .end((err, res) => {
           if (err) done(err);
           expect(res).to.have.status(200)
           expect(res.body).to.have.property('data')
           expect(res.body.data).to.be.an('array')
-          expect(res.body.status).to.equal('success')
+          expect(res.body.status).to.equal(200)
           done();
         })
   });

@@ -18,10 +18,7 @@ export default  {
         const validate = tripsSchema.validate(req.body);
         const { error } = validate;
         if(error){
-            return res.status(400).send({
-                error,
-                status : "error"
-            });
+            return userHelper.respond(res, 400, "error","", error);
         }
         next();
     },
@@ -30,28 +27,19 @@ export default  {
         if(!validate.error){
             const trip = Trips.findbyField('id','trips', parseInt(req.params.trip_id));
             if(!trip){
-                return res.status(404).send({
-                    status : "error",
-                    error : "Trip not found, (does not exist)"
-                })
+                return userHelper.respond(res, 404, "error", "", "Trip not found, (does not exist)");
             }
         }
         else{
-            return res.status(400).send({
-                status : "error",
-                error : validate.error
-            })
+            return userHelper.respond(res, 400, "error", "", validate.error);
         }
         next();
     },
     validateFilter : (req, res, next) => {
-        // @params must be either origin or destination
+        // @query must be either origin or destination
         const { origin, destination } = req.query;
         if(!origin && !destination){
-            return res.status(400).send({
-                status : "error",
-                error  : "filter should be based on either origin or destination"
-            });
+            return userHelper.respond(res, 400, "error", "", "filter should be based on either origin or destination");
         }
         next();
     }

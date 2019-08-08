@@ -13,7 +13,7 @@ const generator = {
             last_name:"Vainqueur",
             password: userHelper.hashPassword('usertest'),
             address:"Goma",
-            is_admin : false
+            isAdmin : false
         },
         {
             email : "georgeTest@gmail.com",
@@ -21,7 +21,7 @@ const generator = {
             last_name:"Test",
             password: userHelper.hashPassword('usertest'),
             address:"Goma",
-            is_admin : false
+            isAdmin : false
         }
     ],
     trips : [
@@ -58,7 +58,6 @@ const generator = {
     ],
     generateUsers : () => {
         generator.users.forEach(user => {
-            //user.password = userHelper.hashPassword('usertest');
             let newUser = User.create(user, 'users');
             newUser = newUser.id === 1 ? User.setAsAdmin(newUser.id) : newUser;
         });

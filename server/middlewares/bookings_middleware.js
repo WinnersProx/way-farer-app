@@ -16,19 +16,15 @@ export default  {
         const validate = bookingsSchema.validate(req.body);
         const targetTrip = Trips.findbyField('id','trips', parseInt(trip_id));
         if(validate.error){
-            return res.status(400).send({
-                status : "error",
-                error  : validate.error
-            })
+            return userHelper.respond(res, 400, "error","", validate.error);
         }
         if(!targetTrip || targetTrip.status !== "active"){
             const status = !targetTrip ? 404 : 400;
-            return res.status(status).send({
-                status : "error",
-                error  : status === 404 
+            return userHelper.respond(res, status, "error","", status === 404 
                 ? "The specified trip does not exist" 
                 : "The target trip is not active"
-            })
+            );
+
         }
         next();
     },
@@ -39,17 +35,11 @@ export default  {
         const checkAvailability = db.bookings.filter(booking => parseInt(booking.seat_number) === seat_number);
         if(seat_number > parseInt(targetTrip.seating_capacity)){
             // the specified seat is not available
-            return res.status(400).send({
-                status : "error",
-                error  : "The specified seat is not available"
-            });
+            return userHelper.respond(res, 400, "error", "", "The specified seat is not available");
         }
         if(checkAvailability.length){
             // the seat is already taken 
-            return res.status(400).send({
-                status : "error",
-                error  : `The specified seat is already taken, try with ${db.bookings.length + 1}`
-            });
+            return userHelper.respond(res, 400, "error", "", `The specified seat is already taken, try with ${db.bookings.length + 1}`);
         }
         next();
     },
@@ -59,24 +49,15 @@ export default  {
         const validate = Joi.number().integer().validate(booking_id);
         const booking  = Bookings.findbyField('id', 'bookings', parseInt(booking_id));
         if(validate.error){
-            return res.status(400).send({
-                status : "error",
-                error  : validate.error
-            })
+            return userHelper.respond(res, 400, "error","", validate.error);
         }
         // booking should exist
         if(!booking){
-            return res.status(404).send({
-                status : "error",
-                error  : "The target booking was not found"
-            });
+            return userHelper.respond(res, 404, "error","", "The target booking was not found");
         }
         // the user should be either owner or admin
-        if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.is_admin)){
-            return res.status(403).send({
-                status : 'error',
-                error  : 'You must be the owner of this booking to delete it'
-            })
+        if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.isAdmin)){
+            return userHelper.respond(res, 403, "error", "", "You must be the owner of this booking to delete it");
         }
 
         next();

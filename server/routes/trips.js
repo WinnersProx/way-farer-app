@@ -3,11 +3,11 @@ import authValidations from '../middlewares/auth_middleware';
 import tripsValidations from '../middlewares/trips_middleware';
 import tripsController from '../controllers/trips_controller';
 const routes = express.Router()
-// hence we'll be using customized middlewares to validate all the auth requests
+
 routes
 .post('/trips', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.validateTrip, tripsController.createTrip)
 .patch('/trips/:trip_id/cancel', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.isValidTrip, tripsController.cancelTrip)
-.get('/trips/:trip_id', authValidations.checkUserToken, tripsValidations.isValidTrip, tripsController.viewTrip)
-.get('/trips/', authValidations.checkUserToken, tripsController.viewTrips)
-.get('/filter/trips', authValidations.checkUserToken, tripsValidations.validateFilter, tripsController.filterTrips)
+.get('/trips/:trip_id', tripsValidations.isValidTrip, tripsController.viewTrip)
+.get('/trips/',  tripsController.viewTrips)
+.get('/filter/trips', tripsValidations.validateFilter, tripsController.filterTrips)
 export default routes;

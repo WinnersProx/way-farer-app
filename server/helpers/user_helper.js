@@ -14,4 +14,16 @@ const authenticateUser = ({id,email,first_name}) => {
     config.jwt.secretKey,
     { expiresIn : 3600}) // expires in an hour
 }
-export default { hashPassword, comparePasswords, authenticateUser };
+const respond = (res, statusCode, statusText, message, payload) => {
+	return statusText !== "error" 
+	? res.status(statusCode).send({
+		status : statusCode,
+		message,
+		data : payload
+	})
+	: res.status(statusCode).send({
+		status : statusCode,
+		error : payload
+	})
+}
+export default { hashPassword, comparePasswords, authenticateUser, respond };
