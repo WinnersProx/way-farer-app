@@ -46,9 +46,9 @@ ${bookingsTable}
 `;
 
 (async () => {
-    try {
-        await pool.query(queryString);
-    } catch (error) {
-        if (error) console.log(error);
-    }
+  try {
+    await pool.query(queryString);
+  } catch (error) {
+    if (error) console.log(error);
+  }
 })();

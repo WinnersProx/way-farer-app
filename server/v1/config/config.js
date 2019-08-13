@@ -1,5 +1,5 @@
 export default {
-    jwt : {
-        secretKey : "AppSecretKey1"
-    }
+  jwt : {
+    secretKey : "AppSecretKey1"
+  }
 }

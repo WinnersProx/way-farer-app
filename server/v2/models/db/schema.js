@@ -15,8 +15,8 @@ CREATE TABLE users (
 `;
 
 const tripsTable = `
-DROP TABLE IF EXISTS cars CASCADE;
-CREATE TABLE cars (
+DROP TABLE IF EXISTS trips CASCADE;
+CREATE TABLE trips (
     id SERIAL PRIMARY KEY,
     origin VARCHAR(50) NOT NULL,
     destination VARCHAR(50) NOT NULL,
@@ -30,12 +30,13 @@ CREATE TABLE cars (
 `;
 
 const bookingsTable = `
-DROP TABLE IF EXISTS orders;
-CREATE TABLE orders (
+DROP TABLE IF EXISTS bookings;
+CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
     trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
-    created_on DATE DEFAULT NOW()
+    created_on DATE DEFAULT NOW(),
+    seat_number INTEGER 
 );
 `;
 
