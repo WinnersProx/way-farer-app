@@ -34,6 +34,7 @@ export default  {
   },
   isValidTrip : async (req, res, next) => {
     const validate = Joi.number().integer().validate(req.params.trip_id);
+    const { user } = req;
     if(!validate.error){
       const trip = await Trips.findbyField('id','trips', parseInt(req.params.trip_id));
       if(!trip || trip.status != "active"){
