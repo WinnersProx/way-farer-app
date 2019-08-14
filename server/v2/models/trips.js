@@ -1,8 +1,20 @@
 import Model from '../models/index';
-import comparePassword from '../helpers/user_helper';
+import userHelper from '../helpers/user_helper';
+import pool from '../config/db.config'
 class TripsModel extends Model{
   constructor(){
     super();
+  }
+  async newTrip(datas){
+     const { seating_capacity, origin, destination, trip_date, fare, bus_licence_number } = datas;
+     const queryString = {
+      text: `INSERT INTO trips
+            (seating_capacity, origin, destination, trip_date, fare, bus_licence_number)
+            VALUES($1, $2, $3, $4, $5, $6) RETURNING*;`,
+      values: [seating_capacity, origin, destination, trip_date, fare, bus_licence_number]
+    };
+    const { rows } = await pool.query(queryString);
+    return rows[0];
   }
   cancel(tripId){
     const target = db.trips[tripId - 1].status = 'cancelled';
@@ -20,6 +32,15 @@ class TripsModel extends Model{
         trip.available_seats = parseInt(trip.seating_capacity) - this.tripBookingsCount(trip.id);
         return trip;
       });
+  }
+  async tripExists({trip_date, bus_licence_number}){
+    const formatedDate = new Date(trip_date);
+    const queryString = {
+      text: `SELECT *FROM trips WHERE trip_date=$1 AND bus_licence_number=$2;`,
+      values: [formatedDate, bus_licence_number]
+    };
+    const { rows } = await pool.query(queryString);
+    return rows[0];
   }
 }
 

@@ -15,16 +15,27 @@ const tripsSchema = Joi.object().keys({
 export default  {
   validateTrip : (req, res, next) =>{
     const validate = tripsSchema.validate(req.body);
+    const { trip_date } = req.body;
     const { error } = validate;
     if(error){
       return userHelper.respond(res, 400, "error","", error);
     }
+    if(userHelper.dateIsPassed(trip_date)){
+      return userHelper.respond(res, 400, "error", "", "The trip date is already passed");
+    }
     next();
   },
-  isValidTrip : (req, res, next) => {
+  tripExists : async (req, res, next) => {
+    const trip = await Trips.tripExists(req.body);
+    if(trip){
+      return userHelper.respond(res, 400, "error", "", "Trip already exist");
+    }
+    next();
+  },
+  isValidTrip : async (req, res, next) => {
     const validate = Joi.number().integer().validate(req.params.trip_id);
     if(!validate.error){
-      const trip = Trips.findbyField('id','trips', parseInt(req.params.trip_id));
+      const trip = await Trips.findbyField('id','trips', parseInt(req.params.trip_id));
       if(!trip){
         return userHelper.respond(res, 404, "error", "", "Trip not found, (does not exist)");
       }

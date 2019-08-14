@@ -7,17 +7,13 @@ const authController = {
     req.body.password = userHelper.hashPassword(req.body.password);
     let user = await User.createUser(req.body, 'users');
     const {id, email, first_name, last_name, is_admin} = user;
-    const token = is_admin
-      ? userHelper.authenticateUser({id,email,first_name, is_admin}) 
-      : userHelper.authenticateUser({id,email,first_name});
+    const token = userHelper.authenticateUser({id,email,first_name, is_admin});
 
     userHelper.respond(res, 201, "success", "account created successfully", {token});
   },
   signin : (req,res) => {
     const { id, email, first_name, last_name, is_admin } = req.user;
-    const token = is_admin 
-      ? userHelper.authenticateUser({id,email,first_name, is_admin})
-      : userHelper.authenticateUser({id,email,first_name});
+    const token = userHelper.authenticateUser({id,email,first_name, is_admin});
         
     userHelper.respond(res, 200, "success", "signed in successfully", {token});
   }

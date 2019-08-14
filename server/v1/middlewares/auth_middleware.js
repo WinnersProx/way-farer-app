@@ -45,6 +45,7 @@ export default  {
   checkUserToken: (req, res, next) => {
     passport.authenticate('jwt', (err, user, info) => {
       // user informations can be accessed on req object as req.user
+      console.log(user);
       req.user = user;
       if (err) {
         console.log(err);

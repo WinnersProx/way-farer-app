@@ -25,7 +25,7 @@ CREATE TABLE trips (
     bus_licence_number VARCHAR(30) NOT NULL,
     status VARCHAR(10) DEFAULT 'active',
     trip_date DATE NOT NULL,
-    crated_on DATE DEFAULT NOW()
+    created_on DATE DEFAULT NOW()
 );
 `;
 
@@ -35,8 +35,8 @@ CREATE TABLE bookings (
     id SERIAL PRIMARY KEY,
     trip_id INTEGER NOT NULL,
     user_id INTEGER NOT NULL,
-    created_on DATE DEFAULT NOW(),
-    seat_number INTEGER 
+    seat_number INTEGER,
+    created_on DATE DEFAULT NOW()
 );
 `;
 

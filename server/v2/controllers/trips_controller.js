@@ -1,9 +1,8 @@
 import Trips from '../models/trips';
 import userHelper from '../helpers/user_helper';
 const tripsController = {
-  createTrip : (req, res) => {
-    req.body.status = 'active';
-    const trip = Trips.create(req.body, 'trips');
+  createTrip : async (req, res) => {
+    const trip = await Trips.newTrip(req.body);
     const { id, seating_capacity, origin, destination, trip_date, fare } = trip;
     userHelper.respond(res, 201, "success", "trip created successfully", {trip_id : id,seating_capacity,origin,destination,trip_date,fare});
   },

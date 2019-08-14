@@ -42,9 +42,10 @@ export default  {
     }
     next();
   },
-  checkUserToken: (req, res, next) => {
+  checkUserToken: async (req, res, next) => {
     passport.authenticate('jwt', (err, user, info) => {
       // user informations can be accessed on req object as req.user
+      console.log(user);
       req.user = user;
       if (err) {
         return userHelper.respond(res, 520, "error", "", err.message);
@@ -66,7 +67,7 @@ export default  {
   },
   isAdmin : (req,res,next) => {
     const { user } = req;
-    if(!user.isAdmin){
+    if(!user.is_admin){
       return userHelper.respond(res, 403, "error", "", "Only admins can perform this action");
     }
     next();
