@@ -11,7 +11,7 @@ const authenticateUser = ({id,email,first_name}) => {
     email,
     first_name
   },
-  config.jwt.secretKey,
+  process.env.SECRET,
   { expiresIn : 3600}) // expires in an hour
 }
 const respond = (res, statusCode, statusText, message, payload) => {

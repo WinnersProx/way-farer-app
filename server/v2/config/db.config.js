@@ -1,11 +1,21 @@
 import { Pool } from 'pg';
-const connectionString = 'postgres://winner:winners1@localhost:5432/way_farer_db';
-const pool = new Pool({ 
-  user: 'winner',
-  host: 'localhost',
-  database: 'way_farer_db',
-  password: 'winners1',
-  port: 5432
-});
+import dotenv from 'dotenv';
+dotenv.config();
+let pool;
+const { NODE_ENV, DATABASE_URL } = process.env;
+if(NODE_ENV === 'production'){
+	const connectionString = DATABASE_URL;
+	pool = new Pool({ connectionString });
+}
+else{
+	pool = new Pool({
+		user: 'postgres',
+	  host: 'localhost',
+	  database: 'way_farer_db',
+	  password: process.env.USER_PASSWORD,
+	  port: 5432
+	})
+}
+
 
 export default pool;

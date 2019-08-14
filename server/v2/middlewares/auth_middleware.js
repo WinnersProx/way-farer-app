@@ -23,13 +23,13 @@ export default  {
     }
     next();
   },
-  validateSignin : (req, res, next) => {
+  validateSignin : async (req, res, next) => {
     const { email, password } = req.body;
     if(!email || !password){
       return userHelper.respond(res, 400, "error", "", 'All fields are required "(email and password)"');
     }
     else{
-      let user = User.findbyField('email', 'users', email);
+      let user = await User.findbyField('email', 'users', email);
       if(!user){
         return userHelper.respond(res, 404, "error", "","user not found");
       }
@@ -57,8 +57,8 @@ export default  {
     })(req, res, next);
   },
   exists : async (req, res, next) => {
-    const user = await User.userExists(req.body.email);
-    console.log(user);
+    const { email } = req.body;
+    const user = await User.userExists(email);
     if(user){
       return userHelper.respond(res, 400, "error", "", "Email already taken");
     }
