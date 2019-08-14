@@ -3,17 +3,15 @@ import jwt from 'jsonwebtoken';
 import config from '../config/config';
 import dotenv from 'dotenv';
 dotenv.config();
+
 const hashPassword = password => bcrypt.hashSync(password, 10);
 const comparePasswords = (plain, encrypted) => {
   return bcrypt.compareSync(plain, encrypted) ? true : false;
 }
-const authenticateUser = ({id,email,first_name, is_admin}) => {
+const authenticateUser = ({email}) => {
   const { SECRET } = process.env;
   return jwt.sign({
-    id,
-    email,
-    first_name,
-    is_admin
+    email
   },
   SECRET,
   { expiresIn : 3600}) // expires in an hour

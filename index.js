@@ -3,10 +3,11 @@ import apiv1Router from './server/v1/routes/';
 import apiv2Router from './server/v2/routes/';
 import swaggerUi from 'swagger-ui-express';
 import docs from './swagger.json';
+import authentication from './server/authentication';
 const app = express();
 const PORT = process.env.PORT || 3000;
 const docsUrl = 'https://way-farer-app-rest.herokuapp.com/api/v1/api-docs/';
-
+app.use(authentication.initialize());
 app.use(express.urlencoded({extended : false}));
 app.use(apiv1Router);
 app.use(apiv2Router);

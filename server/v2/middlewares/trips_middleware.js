@@ -36,8 +36,8 @@ export default  {
     const validate = Joi.number().integer().validate(req.params.trip_id);
     if(!validate.error){
       const trip = await Trips.findbyField('id','trips', parseInt(req.params.trip_id));
-      if(!trip){
-        return userHelper.respond(res, 404, "error", "", "Trip not found, (does not exist)");
+      if(!trip || trip.status != "active"){
+        return userHelper.respond(res, 404, "error", "", "Trip not found or not active");
       }
     }
     else{

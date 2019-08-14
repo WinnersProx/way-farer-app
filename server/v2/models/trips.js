@@ -16,9 +16,13 @@ class TripsModel extends Model{
     const { rows } = await pool.query(queryString);
     return rows[0];
   }
-  cancel(tripId){
-    const target = db.trips[tripId - 1].status = 'cancelled';
-    return db.trips[tripId - 1];
+  async cancel(tripId){
+    const queryString = {
+      text: `UPDATE trips SET status=$1 WHERE id=$2;`,
+      values: ['cancelled', tripId]
+    };
+    const { rows } = await pool.query(queryString);
+    return rows[0];
   }
   filterBy(target, targetValue){
     return db.trips.filter(trip => trip[target] === targetValue);
