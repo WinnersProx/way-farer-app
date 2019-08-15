@@ -14,9 +14,9 @@ const tripsSchema = Joi.object().keys({
 
 export default  {
   validateTrip : (req, res, next) =>{
-    const validate = tripsSchema.validate(req.body);
+    const validateNewTrip = tripsSchema.validate(req.body);
     const { trip_date } = req.body;
-    const { error } = validate;
+    const { error } = validateNewTrip;
     if(error){
       return userHelper.respond(res, 400, "error","", error);
     }

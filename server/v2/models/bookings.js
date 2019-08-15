@@ -24,9 +24,6 @@ class BookingsModel extends Model{
     const { rows } = await pool.query(queryString);
     return rows;
   }
-  findUserBookings(userId){
-    return db.bookings.filter(booking => booking.user_id === userId);
-  }
   async countBookingsOnTrip(tripId){
   	const queryString = {
       text: `SELECT COUNT(*) FROM bookings WHERE trip_id=$1;`,

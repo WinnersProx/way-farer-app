@@ -6,7 +6,7 @@
   "scripts": {
     "start": "babel-node index.js",
     "start-dev": "nodemon index --exec babel-node",
-    "test": "mocha --exit --require @babel/register ./server/v1/tests/*",
+    "test": "npm run seeder && mocha --exit --require @babel/register ./server/**/*.test.js",
     "build": "babel index.js --out-dir build",
     "dev-start": "babel-watch index.js",
     "lint": "eslint ./*.js",
