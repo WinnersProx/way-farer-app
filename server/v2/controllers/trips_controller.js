@@ -19,10 +19,10 @@ const tripsController = {
     const trips = await Trips.find(true);
     userHelper.respond(res, 200, "success","OK", trips);
   },
-  filterTrips : (req, res) => {
+  filterTrips : async (req, res) => {
     const { origin, destination } = req.query;
     const target = origin ? "origin" : "destination";
-    const trips = Trips.filterBy(target, (origin ? origin : destination));
+    const trips = await Trips.filterBy(target, (origin ? origin : destination));
     userHelper.respond(res, 200, "success","trips filtered successfully", trips);
   }
 }

@@ -24,8 +24,13 @@ class TripsModel extends Model{
     const { rows } = await pool.query(queryString);
     return rows[0];
   }
-  filterBy(target, targetValue){
-    return db.trips.filter(trip => trip[target] === targetValue);
+  async filterBy(target, targetValue){
+    const queryString = {
+      text: `SELECT *FROM trips WHERE ${target}=$1;`,
+      values: [targetValue]
+    };
+    const { rows } = await pool.query(queryString);
+    return rows;
   }
   async tripBookingsCount(tripId){
     const queryString = {
