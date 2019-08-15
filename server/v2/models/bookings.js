@@ -43,6 +43,14 @@ class BookingsModel extends Model{
     const { rows } = await pool.query(queryString);
     return rows.length;
   }
+  async find(userId = false){
+    const queryString = {
+      text: !userId ? `SELECT *FROM bookings;` : `SELECT *FROM bookings WHERE user_id=$1;`,
+      values: userId ? [userId] : []
+    };
+    const { rows } = await pool.query(queryString);
+    return rows;
+  }
 }
 
 export default new BookingsModel();

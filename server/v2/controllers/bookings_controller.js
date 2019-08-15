@@ -21,8 +21,9 @@ const bookingsController = {
     await Bookings.delete(parseInt(req.params.booking_id));
     userHelper.respond(res, 200, "success", "booking deleted successfully");
   },
-  viewBookings : (req, res) => {
-    const bookings = (req.user.is_admin) ? Bookings.findAll('bookings') : Bookings.findUserBookings(req.user.id);
+  viewBookings : async (req, res) => {
+    const { is_admin } = req.user;
+    const bookings = (is_admin) ? await Bookings.find() : await Bookings.find(req.user.id);
     userHelper.respond(res, 200, "success", "OK", bookings);
   }
 }
