@@ -40,4 +40,5 @@ const dateIsPassed = d => {
   : (d.getFullYear() === today.getFullYear()) && (d.getMonth() < today.getMonth())
   ? true : false;
 }
+
 export default { hashPassword, comparePasswords, authenticateUser, respond, dateIsPassed, formatDate };

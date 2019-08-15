@@ -1,17 +1,20 @@
 import Bookings from '../models/bookings';
 import userHelper from '../helpers/user_helper';
 const bookingsController = {
-  bookSeat : (req, res) => {
-    req.body.user_id = req.user.id;
-    const booking = Bookings.create(req.body, 'bookings');
-    const targetTrip = Bookings.findbyField('id','trips', parseInt(req.body.trip_id));
+  bookSeat : async (req, res) => {
+    const { id, first_name, last_name, email } = req.user;
+    req.body.user_id = id;
+    const booking = await Bookings.create(req.body, 'bookings');
+    const targetTrip = await Bookings.findbyField('id','trips', parseInt(req.body.trip_id));
+    const { bus_licence_number, trip_date } = targetTrip;
+    
     userHelper.respond(res, 201, "success", "you successfully booked a seat", {
       booking_id  : booking.id,
-      bus_licence_number : targetTrip.bus_licence_number,
-      trip_date          : targetTrip.trip_date,
-      first_name         : req.user.first_name,
-      last_name          : req.user.first_name,
-      user_email         : req.user.email
+      bus_licence_number : bus_licence_number,
+      trip_date          : trip_date,
+      first_name         : first_name,
+      last_name          : last_name,
+      user_email         : email
     });
   },
   deleteBooking : (req, res) => {
