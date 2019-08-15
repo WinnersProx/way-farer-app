@@ -14,12 +14,10 @@ const tripsController = {
     const trip = await Trips.findbyField('id', 'trips', parseInt(req.params.trip_id));
     const { id, seating_capacity, origin, destination, trip_date, fare } = trip;
     userHelper.respond(res, 200, "success", "OK", {trip_id : id,seating_capacity,origin,destination,trip_date,fare});
-
   },
-  viewTrips : (req, res) => { 
-    const trips = Trips.findAvailable('trips');
+  viewTrips : async (req, res) => { 
+    const trips = await Trips.find(true);
     userHelper.respond(res, 200, "success","OK", trips);
-
   },
   filterTrips : (req, res) => {
     const { origin, destination } = req.query;
