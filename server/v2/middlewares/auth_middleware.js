@@ -16,8 +16,8 @@ const userSchema = Joi.object().keys({
 
 export default  {
   validateUser : (req, res, next) =>{
-    const validate = userSchema.validate(req.body);
-    const { error } = validate;
+    const validateMe = userSchema.validate(req.body);
+    const { error } = validateMe;
     if(error){
       return userHelper.respond(res, 400, "error","", error);
     }

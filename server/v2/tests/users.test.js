@@ -1,17 +1,18 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import app from '../../index';
-import generator from './generator';
+import app from '../../../';
+import dotenv from 'dotenv';
+dotenv.config();
 chai.use(chaiHttp)
 const expect = chai.expect;
-const docsUrl = 'https://way-farer-app-rest.herokuapp.com/api/v1/api-docs/';
+const { DOCS_V1_URL } = process.env;
+
 describe('Auth ', () => {
   before((done) => {
     // signup and get an access token
-    generator.generateUsers();
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({email : 'bihames4vainqueur@gmail.com', password : 'usertest'})
@@ -24,7 +25,7 @@ describe('Auth ', () => {
   it('should return an object with a message and 200 status when user accesses the root', (done) => {
     chai
       .request(app)
-      .get('/api/v1')
+      .get('/api/v2')
       .set('Content-type', 'application/json')
       .end((err, res) => {
         if (err) done(err);
@@ -37,7 +38,7 @@ describe('Auth ', () => {
   it('should return an object with status 400 when a user signs up without required credentials', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send()
@@ -52,7 +53,7 @@ describe('Auth ', () => {
   it('should return an error with 400 when the user attempting to be created already exists', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({
@@ -74,7 +75,7 @@ describe('Auth ', () => {
   it('should create a new user with 201 status', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({email : "userTest@gmail.com",first_name:"userTest",last_name:"userTest",password:'testuser12',address:"Goma,NordKivu"})
@@ -89,7 +90,7 @@ describe('Auth ', () => {
   it('should return an object with an error when the user signs in with an incorrect email', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({email:'winner@hotmail.com', password : 'hotmail@winner'})
@@ -104,7 +105,7 @@ describe('Auth ', () => {
   it('should return an object with an error when the user signs in without email or password', (done) => {
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({})
@@ -117,10 +118,10 @@ describe('Auth ', () => {
       })
   });
   it('should return an object with a data -> token when the user signs in with valid credentials', (done) => {
-    const { email } = db.users[0];
+    const email = 'bihames4vainqueur@gmail.com';
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({email, password : 'usertest'})
@@ -133,10 +134,10 @@ describe('Auth ', () => {
       })
   });
   it('should return an error with 400 status when signing in with an invalid password', (done) => {
-    const { email } = generator.users[1];
+    const { email } = 'georgeTest@gmail.com';
     chai
       .request(app)
-      .post('/api/v1/auth/signin')
+      .post('/api/v2/auth/signin')
       .set('Content-type', 'application/json')
       .set('Content-type', 'application/x-www-form-urlencoded')
       .send({email, password : 'winnerstestwrong'})
@@ -151,7 +152,7 @@ describe('Auth ', () => {
   it('should return an html page with 200 status when users access api documentation', (done) => {
     chai
       .request(app)
-      .get('/api/v1/api-docs')
+      .get('/api/v2/api-docs')
       .set('Content-type', 'text/html')
       .end((err, res) => {
         if (err) done(err);
@@ -164,12 +165,12 @@ describe('Auth ', () => {
   it('should return an error with 404 status when the user accesses a wrong endpoint', (done) => {
     chai
       .request(app)
-      .get('/api/v1111/wrong')
+      .get('/api/v52311/wrong')
       .set('Content-type', 'application/json')
       .end((err, res) => {
         if (err) done(err);
         expect(res).to.have.status(404);
-        expect(res.body.error).to.equal(`The requested resource was not found on the server, Kindly read documentation here : ${docsUrl}`);
+        expect(res.body.error).to.equal(`The requested resource was not found on the server, Kindly read documentation here : ${DOCS_V1_URL}`);
         done();
       })
   });

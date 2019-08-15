@@ -18,8 +18,5 @@ class Model{
       return found[field] === fieldValue
     })
   }
-  findAll(model){
-    return db[model];
-  }
 }
 export default Model;

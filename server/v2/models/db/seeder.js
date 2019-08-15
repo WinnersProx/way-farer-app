@@ -4,7 +4,7 @@ const password = userHelper.hashPassword('usertest');
 const user1 = `INSERT INTO users(email, first_name, last_name, password, address, is_admin) 
   VALUES('bihames4vainqueur@gmail.com', 'Bihame', 'Vainqueur', '${password}', 'Goma Ville', ${true});`;
 const user2 = `INSERT INTO users(email, first_name, last_name, password, address) 
-  VALUES('bihames4vainqueur@gmail.com', 'georgeTest', 'georgeTestLast', '${password}', 'Goma Ville');`;
+  VALUES('georgeTest@gmail.com', 'georgeTest', 'georgeTestLast', '${password}', 'Goma Ville');`;
 
 const trip1 = `INSERT INTO trips(seating_capacity, origin, destination, trip_date, fare, bus_licence_number) 
   VALUES(${5}, 'Goma Ville', 'Kampala', '08/25/2020', ${35.000}, 'BL025525666');`;
