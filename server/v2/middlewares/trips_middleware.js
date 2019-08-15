@@ -46,6 +46,20 @@ export default  {
     }
     next();
   },
+  isCancelled : async (req, res, next) => {
+    const validate = Joi.number().integer().validate(req.params.trip_id);
+    const { user } = req;
+    if(!validate.error){
+      const trip = await Trips.findbyField('id','trips', parseInt(req.params.trip_id));
+      if(!trip || trip.status != "cancelled"){
+        return userHelper.respond(res, 404, "error", "", "Trip not found or not cancelled");
+      }
+    }
+    else{
+      return userHelper.respond(res, 400, "error", "", validate.error);
+    }
+    next();
+  },
   validateFilter : (req, res, next) => {
     // @query must be either origin or destination
     const { origin, destination } = req.query;

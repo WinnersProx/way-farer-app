@@ -6,9 +6,13 @@ const tripsController = {
     const { id, seating_capacity, origin, destination, trip_date, fare } = trip;
     userHelper.respond(res, 201, "success", "trip created successfully", {trip_id : id,seating_capacity,origin,destination,trip_date,fare});
   },
-  cancelTrip : (req, res) => {
-    const canceledTrip = Trips.cancel(parseInt(req.params.trip_id));
+  cancelTrip : async (req, res) => {
+    const canceledTrip = await Trips.cancel(parseInt(req.params.trip_id));
     userHelper.respond(res, 200, "success", "OK", {message : "Trip cancelled successfully"});
+  },
+  activateTrip : async (req, res) => {
+    const activate = await Trips.activate(parseInt(req.params.trip_id));
+    userHelper.respond(res, 200, "success", "OK", {message : "Trip activated successfully"});
   },
   viewTrip : async (req, res) => {
     const trip = await Trips.findbyField('id', 'trips', parseInt(req.params.trip_id));
