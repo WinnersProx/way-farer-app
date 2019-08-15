@@ -43,11 +43,11 @@ export default  {
     }
     next();
   },
-  validateDelete : (req, res, next) => {
+  validateDelete : async (req, res, next) => {
     // booking credentials should be defined correctly
     const { booking_id } = req.params;
     const validate = Joi.number().integer().validate(booking_id);
-    const booking  = Bookings.findbyField('id', 'bookings', parseInt(booking_id));
+    const booking  = await Bookings.findbyField('id', 'bookings', parseInt(booking_id));
     if(validate.error){
       return userHelper.respond(res, 400, "error","", validate.error);
     }
@@ -56,7 +56,7 @@ export default  {
       return userHelper.respond(res, 404, "error","", "The target booking was not found");
     }
     // the user should be either owner or admin
-    if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.isAdmin)){
+    if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.is_admin)){
       return userHelper.respond(res, 403, "error", "", "You must be the owner of this booking to delete it");
     }
 

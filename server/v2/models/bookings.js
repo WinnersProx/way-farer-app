@@ -16,8 +16,13 @@ class BookingsModel extends Model{
     const { rows } = await pool.query(queryString);
     return rows[0];
   }
-  delete(bookingId){
-    db.bookings.splice((bookingId - 1),1);
+  async delete(bookingId){
+     const queryString = {
+      text: `DELETE FROM bookings WHERE id=$1`,
+      values: [bookingId]
+    };
+    const { rows } = await pool.query(queryString);
+    return rows;
   }
   findUserBookings(userId){
     return db.bookings.filter(booking => booking.user_id === userId);

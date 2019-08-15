@@ -17,9 +17,9 @@ const bookingsController = {
       user_email         : email
     });
   },
-  deleteBooking : (req, res) => {
-    Bookings.delete(req.params.booking_id);
-    userHelper.respond(res, 200, "success", "booking deleted successfully", { message : "Booking deleted successfully"});
+  deleteBooking : async (req, res) => {
+    await Bookings.delete(parseInt(req.params.booking_id));
+    userHelper.respond(res, 200, "success", "booking deleted successfully");
   },
   viewBookings : (req, res) => {
     const bookings = (req.user.is_admin) ? Bookings.findAll('bookings') : Bookings.findUserBookings(req.user.id);
