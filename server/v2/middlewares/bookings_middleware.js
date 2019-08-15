@@ -10,10 +10,10 @@ const bookingsSchema = Joi.object().keys({
   created_on  : Joi.date()
 });
 export default  {
-  validateBooking : (req, res, next) => {
+  validateBooking : async (req, res, next) => {
     let { trip_id } = req.body;
     const validate = bookingsSchema.validate(req.body);
-    const targetTrip = Trips.findbyField('id','trips', parseInt(trip_id));
+    const targetTrip = await Trips.findbyField('id','trips', parseInt(trip_id));
     if(validate.error){
       return userHelper.respond(res, 400, "error","", validate.error);
     }
@@ -27,26 +27,27 @@ export default  {
     }
     next();
   },
-  isSeatAvailable : (req, res, next) => {
+  isSeatAvailable : async (req, res, next) => {
     let { trip_id, seat_number } = req.body;
-    const targetTrip = Trips.findbyField('id','trips', parseInt(trip_id));
-    seat_number = (seat_number) ? parseInt(seat_number) : db.bookings.length + 1;
-    const checkAvailability = db.bookings.filter(booking => parseInt(booking.seat_number) === seat_number);
-    if(seat_number > parseInt(targetTrip.seating_capacity)){
+    const targetTrip = await Trips.findbyField('id','trips', parseInt(trip_id));
+    seat_number = (seat_number) ? parseInt(seat_number) : await Bookings.countBookingsOnTrip(parseInt(trip_id)) + 1;
+    req.body.seat_number = seat_number;
+    const checkAvailability = await Bookings.isValidSeat(seat_number, parseInt(trip_id));
+    if(seat_number > targetTrip.seating_capacity){
       // the specified seat is not available
       return userHelper.respond(res, 400, "error", "", "The specified seat is not available");
     }
-    if(checkAvailability.length){
+    if(checkAvailability){
       // the seat is already taken 
-      return userHelper.respond(res, 400, "error", "", `The specified seat is already taken, try with ${db.bookings.length + 1}`);
+      return userHelper.respond(res, 400, "error", "", `The specified seat is already taken, try with another one`);
     }
     next();
   },
-  validateDelete : (req, res, next) => {
+  validateDelete : async (req, res, next) => {
     // booking credentials should be defined correctly
     const { booking_id } = req.params;
     const validate = Joi.number().integer().validate(booking_id);
-    const booking  = Bookings.findbyField('id', 'bookings', parseInt(booking_id));
+    const booking  = await Bookings.findbyField('id', 'bookings', parseInt(booking_id));
     if(validate.error){
       return userHelper.respond(res, 400, "error","", validate.error);
     }
@@ -55,7 +56,7 @@ export default  {
       return userHelper.respond(res, 404, "error","", "The target booking was not found");
     }
     // the user should be either owner or admin
-    if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.isAdmin)){
+    if(!(req.user.id === parseInt(booking.user_id)) || !(req.user.is_admin)){
       return userHelper.respond(res, 403, "error", "", "You must be the owner of this booking to delete it");
     }
 

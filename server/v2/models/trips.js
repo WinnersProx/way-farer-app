@@ -1,6 +1,6 @@
 import Model from '../models/index';
 import userHelper from '../helpers/user_helper';
-import pool from '../config/db.config'
+import pool from '../config/db.config';
 class TripsModel extends Model{
   constructor(){
     super();

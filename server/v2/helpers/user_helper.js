@@ -16,16 +16,16 @@ const authenticateUser = ({email}) => {
   SECRET,
   { expiresIn : 3600}) // expires in an hour
 }
-const respond = (res, statusCode, statusText, message, payload) => {
+const respond = (res, statusCode, statusText, message, data = undefined) => {
   return statusText !== "error" 
     ? res.status(statusCode).send({
       status : statusCode,
       message,
-      data : payload
+      data
     })
     : res.status(statusCode).send({
       status : statusCode,
-      error : payload
+      error : data
     })
 }
 const formatDate = d => {
@@ -40,4 +40,5 @@ const dateIsPassed = d => {
   : (d.getFullYear() === today.getFullYear()) && (d.getMonth() < today.getMonth())
   ? true : false;
 }
+
 export default { hashPassword, comparePasswords, authenticateUser, respond, dateIsPassed, formatDate };

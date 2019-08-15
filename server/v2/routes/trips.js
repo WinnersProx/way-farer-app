@@ -11,4 +11,5 @@ routes
   .get('/trips/',  tripsController.viewTrips)
   .get('/filter/trips', tripsValidations.validateFilter, tripsController.filterTrips)
   .patch('/trips/:trip_id/activate', authValidations.checkUserToken, authValidations.isAdmin, tripsValidations.isCancelled, tripsController.activateTrip)
+  
 export default routes;
